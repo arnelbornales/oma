@@ -3081,6 +3081,12 @@ content-blurb-inner article{
 		width: 261px;
 		height: 52px;
 }
+.page-about #content-blurb-inner header h1 {		
+		background: url('images/blurb-about.jpg') top no-repeat;
+		width: 261px;
+		height: 52px;
+}
+
 
 #content-blurb-inner .blurb-body{
 		/*float: right;*/
