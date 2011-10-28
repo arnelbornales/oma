@@ -1,5 +1,4 @@
 <?php
-/* Template Name: Page with Quicktabs Template */
 get_header(); ?>
 
 		<div id="primary">
