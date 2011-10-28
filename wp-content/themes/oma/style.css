@@ -3020,6 +3020,11 @@ body .gform_wrapper form .gform_body ul li {
 		padding: 0;
 		margin-top: 27px;
 }
+#content{
+		width: 100%;
+		margin: 0;
+		padding: 0;
+}
 #main #content{
 		margin: 0;
 		padding: 0;
@@ -3027,6 +3032,7 @@ body .gform_wrapper form .gform_body ul li {
 #content-blurb-wrapper{
 		background: #c5cb50 url('images/body-bg-top.jpg') top no-repeat;
 		min-width: 960px;
+		min-height: 60px;
 		margin: 0;
 		padding: 0;
 		border: 0;
@@ -3047,7 +3053,19 @@ content-blurb-inner article{
 		padding: 0;
 		margin: 0 50px 0 30px;
 }
-
+.content-page-content{
+		background: #fff;
+		padding: 20px;
+		margin-top: -20px;
+		-moz-box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
+		-webkit-box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
+		box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
+}
+.content-page-content .page-title{
+		font: 26px TradeGothic;
+		color: #c5cb50;
+		
+}
 .home #content-blurb-inner header h1{
 		background: url('images/blurb-home.jpg') top no-repeat;
 		width: 484px;
