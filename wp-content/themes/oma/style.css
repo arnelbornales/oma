@@ -3486,11 +3486,15 @@ body #gform_1 ul li {
 		border-bottom-width: 0 !important; 
 		margin: 0 .5em 0 0; 
 		padding: 0; 
-		width: 250px; 
+		width: 230px; 
 		background: #fff;
 		-moz-box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
 		-webkit-box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
 		box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
+}
+.ui-tabs .ui-tabs-nav li.last-tab{
+		margin-right: 0; 
+		width: 227px; 
 }
 .ui-tabs .ui-tabs-nav li a { 
 		float: left; 
@@ -3535,7 +3539,7 @@ body #gform_1 ul li {
 		background: url("images/border-dotted.jpg") bottom repeat-x; 
 		width: 100%;
 		display: block; 
-		width: 220px; 
+		width: 200px; 
 		font: 18px "TradeGothic"; 
 		color: #517a96; 
 		line-height: 25px; 
