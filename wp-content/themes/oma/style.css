@@ -3470,6 +3470,9 @@ body #gform_1 ul li {
 		padding: 0; 
 		width: 250px; 
 		background: #fff;
+		-moz-box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
+		-webkit-box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
+		box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
 }
 .ui-tabs .ui-tabs-nav li a { 
 		float: left; 
@@ -3481,6 +3484,7 @@ body #gform_1 ul li {
 		padding-bottom: 2px; 
 		border-bottom-width: 0; 
 		border-bottom: none;
+		
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-selected a, 
 .ui-tabs .ui-tabs-nav li.ui-state-disabled a, 
@@ -3527,3 +3531,5 @@ body #gform_1 ul li {
 .title-sub-headline{
 		font-weight: bold;
 }
+
+
