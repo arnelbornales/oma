@@ -36,7 +36,7 @@
  * @package WordPress
  * @subpackage Off Madison Ave
  * @since Twenty Eleven 1.0
- */
+ */  
 /**
  * Set the content width based on the theme's design and stylesheet.
  */
@@ -875,6 +875,8 @@ function get_projects_tab_content( $atts, $content = null ){
 				    	
 				    	<?php $carousel_images = get_post_meta(get_the_ID(), 'field_images_carousel', true); ?>
 							<h2><a href="<?php echo the_permalink(); ?>" class="project-featured-title"><?php echo the_title(); ?></a></h2>
+							<span class="title-sub-headline"><?php echo get_post_meta(get_the_ID(), 'field_sub_headline' , true); ?></span>
+
 							<?php echo the_content(); ?>
 						</div>
 						
