@@ -1,0 +1,33 @@
+UPDATE amo_options SET option_value = replace(option_value, 'http://oma.local', 'http://www.elementzinteractive.com/oma') WHERE option_name = 'home' OR option_name = 'siteurl';
+
+UPDATE amo_posts SET guid = replace(guid, 'http://oma.local','http://www.elementzinteractive.com/oma');
+
+UPDATE amo_posts SET post_content = replace(post_content, 'http://oma.local', 'http://www.elementzinteractive.com/oma');
+
+UPDATE amo_postmeta SET meta_value = replace(meta_value, 'http://oma.local', 'http://www.elementzinteractive.com/oma');\
+
+
+
+
+
+Broken theme
+
+    Log into cPanel
+    Click Phmyadmin
+    Locate correct Wordpress Database
+    Browse table wp_options
+    Go to page 2 change - the template and style sheet, type in: default.
+
+Incompatible Plugin
+
+    In File Manager
+    Go toWP-Content, look for "plugins” Folder to “plugins_old”.
+    Create new empty folder called “plugins”.
+    This will disable all the Wordpress plugins.
+    Log into Wordpress and verify site is working.
+    Enable plug-ins one at a time to see which one was causing the issues.
+
+Memory_limit maxed.
+
+    Increase the memory_limit in the php.ini. 64M should be good.
+

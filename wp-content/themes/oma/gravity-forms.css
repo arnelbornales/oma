@@ -1,0 +1,54 @@
+
+.gform_wrapper textarea {outline-style: none; font-size:11px; font-family:inherit; letter-spacing:normal; padding:2px 0 2px 0; resize:none} /* doesn't validate but added for Safari field resizing */
+.gform_wrapper .top_label textarea.textarea {width:100%}
+.gform_wrapper textarea.textarea {width:98%}
+.gform_wrapper textarea.small {height:80px}
+.gform_wrapper textarea.medium {height:150px}
+.gform_wrapper textarea.large {height:250px}
+/* textarea character counter ------------------------------------------------------*/
+
+.gform_wrapper div.charleft {font-size:11px; margin-top:4px; color:#b7b7b7; width:92%!important; white-space: nowrap!important}
+.gform_wrapper div.charleft[style] {width:92%!important}
+	.gform_wrapper .left_label div.charleft,
+	.gform_wrapper .right_label div.charleft {margin-left:32%}
+	.gform_wrapper div.charleft.warningTextareaInfo {color:#a1a1a1}
+.gform_wrapper li.gf_hide_charleft div.charleft  {display:none!important}
+
+
+/* 2 column ready class ------------------------------------------------------*/
+
+.gform_wrapper .top_label li.gfield.gf_left_half {margin:0 0 8px 0; width:49%}
+.gform_wrapper .top_label li.gfield.gf_right_half {margin:0 0 8px 0; width:49%}
+.gform_wrapper .top_label li.gfield.gfield_error.gf_left_half,
+.gform_wrapper .top_label li.gfield.gfield_error.gf_right_half {width:46%}
+.gform_wrapper .top_label li.gfield.gfield_error.gf_right_half {margin-right:1%}
+.gform_wrapper .top_label li.gfield.gf_left_half {float:left; clear:left!important}
+.gform_wrapper .top_label li.gfield.gf_right_half {float:right; clear:right!important}
+.gform_wrapper .top_label li.gfield.gf_left_half input.medium,
+.gform_wrapper .top_label li.gfield.gf_left_half input.large,
+.gform_wrapper .top_label li.gfield.gf_left_half select.medium,
+.gform_wrapper .top_label li.gfield.gf_left_half select.large,
+.gform_wrapper .top_label li.gfield.gf_right_half input.medium,
+.gform_wrapper .top_label li.gfield.gf_right_half input.large,
+.gform_wrapper .top_label li.gfield.gf_right_half select.medium,
+.gform_wrapper .top_label li.gfield.gf_right_half select.large {width:97%}
+.gform_wrapper .top_label li.gfield.gf_left_half textarea,
+.gform_wrapper .top_label li.gfield.gf_right_half textarea {width:98%}
+.gform_wrapper .top_label li.gfield.gf_left_half input.small,
+.gform_wrapper .top_label li.gfield.gf_right_half input.small {width:35%}
+.gform_wrapper .top_label li.gfield.gf_left_half+li.gsection,
+.gform_wrapper .top_label li.gfield.gf_right_half+li.gsection {padding:16px 0 8px 0}
+.gform_wrapper .top_label li.gfield.gf_left_half+li.gfield.gsection.gf_left_half,
+.gform_wrapper .top_label li.gfield.gf_right_half+li.gfield.gsection.gf_left_half,
+.gform_wrapper .top_label li.gfield.gf_left_half+li.gfield.gsection.gf_right_half,
+.gform_wrapper .top_label li.gfield.gf_right_half+li.gfield.gsection.gf_right_half,
+.gform_wrapper .top_label li.gfield.gsection.gf_left_half+li.gfield.gsection.gf_left_half,
+.gform_wrapper .top_label li.gfield.gsection.gf_right_half+li.gfield.gsection.gf_left_half,
+.gform_wrapper .top_label li.gfield.gsection.gf_right_half+li.gfield.gsection.gf_right_half {padding:16px 0 8px 0}
+.gform_wrapper .top_label li.gfield.gsection.gf_left_half+li.gfield.gsection.gf_right_half {padding:0 0 8px 0}
+.gform_wrapper .top_label li.gfield.gsection.gf_left_half+li.gfield.gsection.gf_right_half+li.gfield.gsection.gf_left_half+li.gfield.gsection.gf_right_half {padding:16px 0 8px 0}
+.gform_wrapper .top_label li.gfield.gf_left_half+li.gfield,
+.gform_wrapper .top_label li.gfield.gf_right_half+li.gfield {clear:both}
+.gform_wrapper .top_label li.gfield.gf_left_half+.gform_footer,
+.gform_wrapper .top_label li.gfield.gf_right_half+.gform_footer {clear:both}
+

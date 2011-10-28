@@ -1,0 +1,15 @@
+
+@font-face {
+    font-family: 'TradeGothic';
+    src: url('font/TradeGot.eot');
+}
+@font-face {
+    font-family: 'TradeGothic';
+    src: url('font/TradeGot.woff') format('woff'),
+    url('font/TradeGot.svg#TradeGothic') format('svg');
+}
+.phone{
+		font-family: "TradeGothic";
+		color: red;
+		font-size: 40px;
+}
