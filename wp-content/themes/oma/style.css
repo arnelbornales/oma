@@ -3550,6 +3550,25 @@ body #gform_1 ul li {
 }
 /** END - QUICK Tabs */
 
+
+/** START - Our Work Page - Process Tab */
+.nav { margin: 10px;  }
+.nav li { float: left; list-style: none}
+.nav a { margin: 5px; padding: 3px 5px; border: 1px solid #ccc; background: #fc0; text-decoration: none }
+.nav li.activeSlide a { background: #faa; color: black }
+.nav a:focus { outline: none; }
+.projects-all-wrapper{ }
+.project-nav-wrapper{ height: 40px; }
+.projects-wrapper-left {width: 275px;}
+.projects-wrapper-right{ width: 560px; margin-left: 20px; padding: 10px; border: 1px solid #ccc;}
+#projects-tab { min-height: 600px;}
+#projects { min-height: 600px;  padding:0; margin:0; overflow: hidden }
+.projects img { height: 200px; width: 200px; padding: 15px; border: 1px solid #ccc; background-color: #eee; top:0; left:0 }
+.projects img { -moz-border-radius: 10px; -webkit-border-radius: 10px; }
+/** END - Our Work Page - Process Tab */
+
+
+
 .title-sub-headline{
 		font-weight: bold;
 }

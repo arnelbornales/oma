@@ -779,31 +779,10 @@ function get_homepage_featured_project( $atts, $content = NULL) {
 add_shortcode( 'get_homepage_featured_project', 'get_homepage_featured_project' );
 
 function add_projects_header(){ ?>
-		<style type="text/css">			
-				table { margin: auto; border-collapse: separate; border-spacing: 20px }
-				td { vertical-align: top; text-align:center; width: 235px }
-				pre { text-align: left; overflow: visible }
-				#projects-tab { min-height: 600px;}
-				#projects { min-height: 600px;  padding:0; margin:0; overflow: hidden }
-				.projects img { height: 200px; width: 200px; padding: 15px; border: 1px solid #ccc; background-color: #eee; top:0; left:0 }
-				.projects img { -moz-border-radius: 10px; -webkit-border-radius: 10px; }
-		</style>
 		<!-- http://jquery.malsup.com/cycle/pager11.html -->
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 		<script type="text/javascript" src="http://malsup.github.com/chili-1.7.pack.js"></script>
 		<script type="text/javascript" src="http://malsup.github.com/jquery.cycle.all.js"></script>
-		<style type="text/css">
-				
-				.nav { margin: 10px;  }
-				.nav li { float: left; list-style: none}
-				.nav a { margin: 5px; padding: 3px 5px; border: 1px solid #ccc; background: #fc0; text-decoration: none }
-				.nav li.activeSlide a { background: #faa; color: black }
-				.nav a:focus { outline: none; }
-				.projects-all-wrapper{ }
-				.project-nav-wrapper{ height: 40px; }
-				.projects-wrapper-left {width: 275px;}
-				.projects-wrapper-right{ width: 560px; margin-left: 20px; padding: 10px; border: 1px solid #ccc;}
-		</style>
 		<script type="text/javascript">
 			jQuery(function() {
 			
