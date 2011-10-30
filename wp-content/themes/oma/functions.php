@@ -831,6 +831,52 @@ function get_projects_tab_content( $atts, $content = null ){
 	  <div style="text-align:center;margin:auto;width:880px" class="project-nav-wrapper">
 		  <div class="left">
 		  		<a id="project-all-btn"><img src="/oma/wp-content/themes/oma/images/see_all_clients_project.jpg" /></a>
+		  		<div class="project-modal">
+					  <ul id="projects">
+						<?php  
+						  $args = array( 'post_type' => 'projects' );
+              $loop = new WP_Query( $args );
+
+              while ( $loop->have_posts() ) : $loop->the_post();
+            ?>
+
+            <li class="<?php 
+              $terms = get_the_terms(get_the_ID(), "Services");
+              $count = count($terms);
+              if ( $count > 0 ){
+                  foreach ( $terms as $term ) {
+                    echo $term->slug;
+                    echo " ";
+                  }
+              }
+             ?>"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyeleven' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></li>
+            <?php                
+              endwhile;
+						?>
+						</ul>
+						
+					  <dl id="projects-filter">
+						  <dt>Marketing &amp; Advertising</dt>
+              <dd><input type="checkbox" name="lifecycle-marketing" value="lifecycle-marketing" />Lifecycle Marketing</dd>
+              <dd><input type="checkbox" name="social-media" value="social-media" />Social Media</dd>
+              <dd><input type="checkbox" name="media-buying-planning" value="media-buying-planning" />Media Buying/Planning</dd>
+              <dd><input type="checkbox" name="ppc" value="ppc" />PPC</dd>
+              <dd><input type="checkbox" name="seo" value="seo" />SEO</dd>
+              <dt>Web &amp; App Development</dt>
+              <dd><input type="checkbox" name="user-experience" value="user-experience" />User Experience</dd>
+              <dd><input type="checkbox" name="content-strategy" value="content-strategy" />Content Strategy</dd>
+              <dd><input type="checkbox" name="website" value="website" />Website</dd>
+              <dd><input type="checkbox" name="applications" value="applications" />Applications</dd>
+              <dt>Creative</dt>
+              <dd><input type="checkbox" name="branding" value="branding" />Branding</dd>
+              <dd><input type="checkbox" name="interactive" value="interactive" />Interactive</dd>
+              <dd><input type="checkbox" name="traditional" value="traditional" />Traditional</dd>
+              <dt>Public Relations</dt>
+              <dd><input type="checkbox" name="media-relations" value="media-relations" />Media Relations</dd>
+              <dd><input type="checkbox" name="strategic-communications" value="strategic-communications" />Strategic Communications</dd>
+              <dd><input type="checkbox" name="crisis-communications" value="crisis-communications" />Crisis Communications</dd>
+						</dl>
+					</div>
 		  </div>
 		  <div class="right">
 		  	<div class="left">

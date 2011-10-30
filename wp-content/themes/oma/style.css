@@ -3579,4 +3579,33 @@ body #gform_1 ul li {
 		font-weight: bold;
 }
 
+/* Project Page */
 
+.project-modal {
+  background: #fff;
+  border: 1px solid #c5cb50;
+  display: none;
+}
+
+#projects-filter, #projects {
+  float: left;
+  list-style: none;
+}
+
+#projects-filter {
+  background: #f6f6f6;
+  border-left: 1px dotted #bac12f;
+}
+
+#projects-filter dd {
+  margin: 0;
+}
+
+#projects-filter dt {
+  font-weight: bold;
+}
+
+#projects ul li a {
+  font-size: 12px;
+  font-weight: bold;
+}

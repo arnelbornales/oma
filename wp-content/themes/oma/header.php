@@ -65,6 +65,7 @@
 	 */
 	wp_head();
 ?>
+<script src="<?php bloginfo( 'template_url' ); ?>/js/scripts.js" type="text/javascript"></script>
 </head>
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed">
