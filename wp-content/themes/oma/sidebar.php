@@ -13,6 +13,14 @@ $current_layout = $options['theme_layout'];
 if ( 'content' != $current_layout ) :
 ?>
 		<div id="secondary" class="widget-area" role="complementary">
+		  
+		  <form method="get" id="searchform" action="<?php bloginfo('home'); ?>/">
+        <div>
+          <input type="text" value="<?php the_search_query(); ?>" name="s" id="s" placeholder="Search Blog" />
+          <input type="submit" id="searchsubmit" value="Search" />
+        </div>
+      </form>
+		  
 			<?php if ( ! dynamic_sidebar( 'sidebar-1' ) ) : ?>
 
 				<aside id="archives" class="widget">

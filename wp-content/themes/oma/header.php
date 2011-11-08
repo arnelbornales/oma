@@ -65,6 +65,7 @@
 	 */
 	wp_head();
 ?>
+<script src="<?php bloginfo( 'template_url' ); ?>/js/jquery.hoverIntent.minified.js" type="text/javascript"></script>
 <script src="<?php bloginfo( 'template_url' ); ?>/js/scripts.js" type="text/javascript"></script>
 </head>
 <body <?php body_class(); ?>>
@@ -109,10 +110,13 @@
 			
 	</header><!-- #branding -->	
 	
-	<section id="social-icons" class="">
-			<div id="wrapper-social-icons" class="">
-					
-			</div>
+	<section id="social-icons">
+	  <ul class="social-nav">
+	    <li class="twitter"><a href="http://twitter.com/#!/offmadisonave">Twitter</a></li>
+	    <li class="facebook"><a href="http://www.facebook.com/offmadisonave">Facebook</a></li>
+	    <li class="linkedin"><a href="http://www.linkedin.com/in/offmadisonave">LinkedIn</a></li>
+	    <li class="youtube"><a href="http://www.youtube.com/user/offmadisonave">Youtube</a></li>
+	  </ul>
 	</section>
 	
 	<div id="main" class="clear">

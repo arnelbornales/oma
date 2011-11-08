@@ -780,19 +780,28 @@ add_shortcode( 'get_homepage_featured_project', 'get_homepage_featured_project' 
 
 function add_projects_header(){ ?>
 		<!-- http://jquery.malsup.com/cycle/pager11.html -->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-		<script type="text/javascript" src="http://malsup.github.com/chili-1.7.pack.js"></script>
 		<script type="text/javascript" src="http://malsup.github.com/jquery.cycle.all.js"></script>
 		<script type="text/javascript">
-			jQuery(function() {
+			jQuery(document).ready(function() {
 			
 			    jQuery('#projects').cycle({
-			        fx:      'scrollHorz',
 			        fx:      'fade',
 			        timeout:  0,
 			        prev:    '#prev',
-			        next:    '#next',
-			    });<?php
+			        next:    '#next'
+			    });
+			    
+			    /*,
+	        before: function(current, next, opts, forward) {
+	          var $current = $('div[id^="projects-carousel"]', $(current)),
+	              $next = $('div[id^="projects-carousel"]', $(next));
+	              
+	          $current.cycle('destroy');
+	          $next.data('cycleStarted', true).cycle({
+	            pager: $('ul[id^="nav-"]', $next)
+	          });
+	        }*/
+			    <?php
 					$args = array(
 						'post_type' => 'projects',
 						'post_status' => array('publish'),
@@ -801,12 +810,12 @@ function add_projects_header(){ ?>
 					$featProjects = new WP_Query( $args );
 					if ( $featProjects->have_posts() ) :
 						while ( $featProjects->have_posts() ) : $featProjects->the_post();?>
-					
+					  
 						jQuery('#projects-carousel-<?php echo get_the_ID(); ?>').cycle({
-			        fx:      'fade',
-			        timeout:  0,
-			        pager:   '#nav-<?php echo get_the_ID(); ?>',
-			    	});
+						              fx:      'fade',
+						              timeout:  0,
+						              pager:   '#nav-<?php echo get_the_ID(); ?>'
+						            });
 						
 						<?php
 						endwhile;
@@ -830,9 +839,11 @@ function get_projects_tab_content( $atts, $content = null ){
 	  <div id="projects-tab" class="clear-after clear">
 	  <div style="text-align:center;margin:auto;width:880px" class="project-nav-wrapper">
 		  <div class="left">
-		  		<a id="project-all-btn"><img src="/oma/wp-content/themes/oma/images/see_all_clients_project.jpg" /></a>
+		  		<div id="project-all-btn">
+		  		  <a href="#"><img src="/oma/wp-content/themes/oma/images/see_all_clients_project.jpg" /></a>
+		  		
 		  		<div class="project-modal">
-					  <ul id="projects">
+					  <ul id="all-projects">
 						<?php  
 						  $args = array( 'post_type' => 'projects' );
               $loop = new WP_Query( $args );
@@ -854,35 +865,36 @@ function get_projects_tab_content( $atts, $content = null ){
               endwhile;
 						?>
 						</ul>
-						
-					  <dl id="projects-filter">
-						  <dt>Marketing &amp; Advertising</dt>
-              <dd><input type="checkbox" name="lifecycle-marketing" value="lifecycle-marketing" />Lifecycle Marketing</dd>
-              <dd><input type="checkbox" name="social-media" value="social-media" />Social Media</dd>
-              <dd><input type="checkbox" name="media-buying-planning" value="media-buying-planning" />Media Buying/Planning</dd>
-              <dd><input type="checkbox" name="ppc" value="ppc" />PPC</dd>
-              <dd><input type="checkbox" name="seo" value="seo" />SEO</dd>
-              <dt>Web &amp; App Development</dt>
-              <dd><input type="checkbox" name="user-experience" value="user-experience" />User Experience</dd>
-              <dd><input type="checkbox" name="content-strategy" value="content-strategy" />Content Strategy</dd>
-              <dd><input type="checkbox" name="website" value="website" />Website</dd>
-              <dd><input type="checkbox" name="applications" value="applications" />Applications</dd>
-              <dt>Creative</dt>
-              <dd><input type="checkbox" name="branding" value="branding" />Branding</dd>
-              <dd><input type="checkbox" name="interactive" value="interactive" />Interactive</dd>
-              <dd><input type="checkbox" name="traditional" value="traditional" />Traditional</dd>
-              <dt>Public Relations</dt>
-              <dd><input type="checkbox" name="media-relations" value="media-relations" />Media Relations</dd>
-              <dd><input type="checkbox" name="strategic-communications" value="strategic-communications" />Strategic Communications</dd>
-              <dd><input type="checkbox" name="crisis-communications" value="crisis-communications" />Crisis Communications</dd>
-						</dl>
+						<div id="projects-all-right">
+						  <h3>View by Service</h3>
+  					  <dl id="projects-filter">
+  						  <dt>Marketing &amp; Advertising</dt>
+                <dd><input type="checkbox" name="lifecycle-marketing" value="lifecycle-marketing" />Lifecycle Marketing</dd>
+                <dd><input type="checkbox" name="social-media" value="social-media" />Social Media</dd>
+                <dd><input type="checkbox" name="media-buying-planning" value="media-buying-planning" />Media Buying/Planning</dd>
+                <dd><input type="checkbox" name="ppc" value="ppc" />PPC</dd>
+                <dd><input type="checkbox" name="seo" value="seo" />SEO</dd>
+                <dt>Web &amp; App Development</dt>
+                <dd><input type="checkbox" name="user-experience" value="user-experience" />User Experience</dd>
+                <dd><input type="checkbox" name="content-strategy" value="content-strategy" />Content Strategy</dd>
+                <dd><input type="checkbox" name="website" value="website" />Website</dd>
+                <dd><input type="checkbox" name="applications" value="applications" />Applications</dd>
+                <dt>Creative</dt>
+                <dd><input type="checkbox" name="branding" value="branding" />Branding</dd>
+                <dd><input type="checkbox" name="interactive" value="interactive" />Interactive</dd>
+                <dd><input type="checkbox" name="traditional" value="traditional" />Traditional</dd>
+                <dt>Public Relations</dt>
+                <dd><input type="checkbox" name="media-relations" value="media-relations" />Media Relations</dd>
+                <dd><input type="checkbox" name="strategic-communications" value="strategic-communications" />Strategic Communications</dd>
+                <dd><input type="checkbox" name="crisis-communications" value="crisis-communications" />Crisis Communications</dd>
+  						</dl>
+						</div>
 					</div>
+				</div>
 		  </div>
-		  <div class="right">
 		  	<div class="left">
-		  		<a href="#"><span id="prev"><</span></a><span>NEXT PROJECT</span><a href="#"><span id="next">></span></a>
+		  		<a href="#"><span id="prev">&lt;</span></a><span class="next-project">NEXT PROJECT</span><a href="#"><span id="next">&gt;</span></a>
 		  	</div>
-			</div>
 		</div>
 	  <div id="projects">
 		<?php						
@@ -909,22 +921,23 @@ function get_projects_tab_content( $atts, $content = null ){
 																
 									
 											<div id = "project-<?php echo get_the_ID(); ?>" class = "project-wrapper" style="clear:both;">
-													<div id="projects-carousel-<?php echo get_the_ID(); ?>">
+													<div id="projects-carousel-<?php echo get_the_ID(); ?>" class="projects-carousel">
 													<?php
 														foreach($carousel_images as $key){ ?>
 															<img src="<?php echo $key['image']; ?>" /><?php 
 														}?>
 										    	</div>
 									    							    	
-									    		<ul id="nav-<?php echo get_the_ID(); ?>"></ul>
-									    		<br />
-									    		<span class="project-launched">
-									    		Launched: <?php echo get_post_meta(get_the_ID(), 'field_project_launched' , true); ?>
-									    		</span>
-									    		<br />
-									    		<div class="services-cat"><?php the_terms( get_the_ID(), 'Services' , '', '', '' ); ?></div>
-									    		<br />
-									    		<a href="<?php echo get_post_meta(get_the_ID(), 'field_project_view_site' , true); ?>">VIEW SITE</a>		    		
+									    		<ul id="nav-<?php echo get_the_ID(); ?>" class="projects-pagi"></ul>
+									    		<dl class="project-launched services-cat">
+									    		  <dt>Launched:</dt> 
+									    		  <dd><?php echo get_post_meta(get_the_ID(), 'field_project_launched' , true); ?></dd>
+									    		</dl>
+									    		<dl class="services-cat">
+									    		  <dt>Services:</dt>
+									    		  <?php the_terms( get_the_ID(), 'Services' , '<dd>', '</dd><dd>', '</dd>' ); ?>
+									    	  </dl>
+									    		<a href="<?php echo get_post_meta(get_the_ID(), 'field_project_view_site' , true); ?>" class="projects-view-site">VIEW SITE</a>
 							   
 							</div>
 						</div>
@@ -1051,3 +1064,41 @@ add_action('wp_head', 'input_text_clear');
 
 
 add_filter( 'widget_text', 'do_shortcode');
+
+// Add Social Media Fields to WP User
+
+add_action( 'show_user_profile', 'extra_user_profile_fields' );
+add_action( 'edit_user_profile', 'extra_user_profile_fields' );
+ 
+function extra_user_profile_fields( $user ) { ?>
+<h3><?php _e("Social profile information", "blank"); ?></h3>
+ 
+<table class="form-table">
+<tr>
+<th><label for="twitter"><?php _e("Twitter"); ?></label></th>
+<td>
+<input type="text" name="twitter" id="twitter" value="<?php echo esc_attr( get_the_author_meta( 'twitter', $user->ID ) ); ?>" class="regular-text" /><br />
+<span class="description"><?php _e("Please enter your Twitter."); ?></span>
+</td>
+</tr>
+<tr>
+<th><label for="linkedin"><?php _e("LinkedIn"); ?></label></th>
+<td>
+<input type="text" name="linkedin" id="linkedin" value="<?php echo esc_attr( get_the_author_meta( 'linkedin', $user->ID ) ); ?>" class="regular-text" /><br />
+<span class="description"><?php _e("Please enter your LinkedIn."); ?></span>
+</td>
+</tr>
+</table>
+<?php }
+ 
+add_action( 'personal_options_update', 'save_extra_user_profile_fields' );
+add_action( 'edit_user_profile_update', 'save_extra_user_profile_fields' );
+ 
+function save_extra_user_profile_fields( $user_id ) {
+ 
+if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
+
+update_usermeta( $user_id, 'twitter', $_POST['twitter'] );
+update_usermeta( $user_id, 'linkedin', $_POST['linkedin'] );
+}
+?>

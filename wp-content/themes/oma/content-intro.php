@@ -8,7 +8,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'intro' ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( $alt ); ?>>
 	<header class="entry-header">
 		<h2 class="entry-title"><?php the_title(); ?></h2>
 	</header><!-- .entry-header -->

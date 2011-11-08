@@ -13,7 +13,11 @@
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 	</header><!-- .entry-header -->
 
-	<div class="blurb-body <?php echo is_front_page() ? 'blurb-body-home' : ''; ?>">
+	<div class="blurb-body <?php 
+	if (is_front_page()) {
+	  echo 'blurb-body-home'; 
+  }
+	?>">
 		<?php the_excerpt(); ?>
 		<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'twentyeleven' ) . '</span>', 'after' => '</div>' ) ); ?>
 	</div><!-- .entry-content -->
