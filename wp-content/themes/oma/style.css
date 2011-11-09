@@ -3610,6 +3610,7 @@ body #gform_1 ul li {
 		border-width: 0; 
 		background: #fff; 
 		border-top: 2px solid #c5cb50; 
+		
 }
 .ui-tabs .ui-tabs-hide { 
 		display: none !important; 
@@ -3637,13 +3638,12 @@ body #gform_1 ul li {
 .nav li.activeSlide a { background: #faa; color: black }
 .nav a:focus { outline: none; }
 .projects-all-wrapper{ }
-.project-nav-wrapper{ height: 40px; }
+.project-nav-wrapper{ height: 40px; width: 880px; }
 .projects-wrapper-left {width: 275px;}
-.projects-wrapper-right{ 
+.projects-wrapper-right,.process-wrapper-right{ 
   -webkit-box-shadow: 0 0 5px 2px rgba(159,159,159,.75);
-     -moz-box-shadow: 0 0 5px 2px rgba(159,159,159,.75);
-          box-shadow: 0 0 5px 2px rgba(159,159,159,.75); /* inset offset-x offset-y blur spread color */
-  
+  -moz-box-shadow: 0 0 5px 2px rgba(159,159,159,.75);
+  box-shadow: 0 0 5px 2px rgba(159,159,159,.75); /* inset offset-x offset-y blur spread color */
   width: 560px; 
   margin-left: 20px; 
   padding: 10px; 
@@ -3671,13 +3671,13 @@ body #gform_1 ul li {
   background-position: bottom left;
   float: right;
 }
-.projects-pagi {
+.projects-pagi,#process-nav {
   display: inline-block;
   float: right;
   margin: 10px 0 0 0;
 }
 
-.projects-pagi a {
+.projects-pagi a,#process-nav a {
   background: url('images/projects-pagi.jpg') no-repeat scroll top left;
   display: block;
   float: left;
@@ -3687,7 +3687,7 @@ body #gform_1 ul li {
   width: 15px;
 }
 
-.projects-pagi a.activeSlide {
+.projects-pagi a.activeSlide, #process-nav a.activeSlide {
   background-position: bottom left;
 }
 
@@ -3750,7 +3750,7 @@ body #gform_1 ul li {
   font: 14px "TradeGothic";
   margin: 8px 0;
   padding: 8px 17px;
-  width: 50px;
+  width: 51px;
 }
 
 
@@ -3760,10 +3760,15 @@ body #gform_1 ul li {
 .projects img { -moz-border-radius: 10px; -webkit-border-radius: 10px; }
 /** END - Our Work Page - Process Tab */
 
+.inner-tab-wrapper{
+	min-height: 600px;
+}
 
-
-.title-sub-headline{
-		font-weight: bold;
+.inner-tab-sub-headline{
+		color: #333333;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 /* Project Page */
@@ -3990,4 +3995,85 @@ body #gform_1 ul li {
 
 .blog-right {
   width: 530px;
+}
+h2.inner-tab-title{
+	font-size: 24px;
+	font-family: 'TradeGothic';
+	line-height: 24px;
+}
+h2.inner-tab-title a{
+	color: #517a96;
+} 
+#process-tab{
+	min-height: 400px;
+}
+.process-wrapper-left{
+	width: 270px;
+}
+.process-lists{
+	list-style: none;
+	margin: 0;
+}
+.process-lists li{ 
+	background: url('images/category-icon.jpg') left no-repeat;
+	display: block;
+	width: 200px;
+}		
+.process-lists li a{
+	font-size: 13px;
+	font-family: Arial;
+	font-weight: bold;	
+	color: #517a96;
+	padding-left: 15px;
+	background: url("images/border-dotted.jpg") bottom repeat-x; 
+	width: 100%;
+	display: block; 
+	width: 200px;
+	line-height: 25px; 
+	margin-bottom: 5px;
+} 
+.marketing-wrapper-left{
+	width: 400px;
+}
+.marketing-wrapper{
+	position: relative;
+}
+.marketing-wrapper-right{
+	width: 440px;
+}
+p,td.cell-two p {
+    line-height: 1.4em;
+    margin-bottom: 1em;
+    font-size: 1em;
+}
+.marketing-right-col td{
+		vertical-align: top;
+}
+td.cell-first{
+		padding-right: 10px;
+}
+td.cell-first img{
+		border: 0;
+		padding-top: 0;
+}
+td.cell-two{
+		font: 1em "Arial" normal;
+}
+.services-right-titles{
+	color: #517a96;
+	font: 18px "Tradegothic",Arial normal;
+}
+img[class*="align"],
+img[class*="wp-image-"],
+#content .gallery .gallery-icon img {/* Add fancy borders to all WordPress-added images but not things like badges and icons and the like */
+	border: 0;
+	padding: 0;
+}
+.blockquote{
+	background: #f3f3f3;
+	border: 1px solid #d3d3d3;
+	color: #517a96;
+	padding: 20px;
+	margin-bottom: 20px;
+	font-style: italic;
 }
