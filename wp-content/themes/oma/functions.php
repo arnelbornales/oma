@@ -599,7 +599,7 @@ add_filter( 'body_class', 'twentyeleven_body_classes' );
 /*****************************************************************/
 
 function oma_init() {
-	remove_action( 'wp_head', 'feed_links_extra', 3 );
+	/*remove_action( 'wp_head', 'feed_links_extra', 3 );
 	remove_action( 'wp_head', 'feed_links', 2 );
 	remove_action( 'wp_head', 'rsd_link' );
 	remove_action( 'wp_head', 'wlwmanifest_link' );
@@ -608,6 +608,7 @@ function oma_init() {
 	remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
 	remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 );
 	remove_action( 'wp_head', 'wp_generator' );
+	*/
 	add_filter( 'show_recent_comments_widget_style', '__return_false' );
 }
 add_action( 'init', 'oma_init' );
@@ -681,10 +682,10 @@ add_action( 'widgets_init', 'oma_widgets_init', 1 );
 
 
 function oma_setup_theme() {
-		add_image_size( 'featured-projects', 288, 145, false );
-		add_theme_support( 'menus' );
-		add_theme_support( 'post-thumbnails' );
-		add_theme_support( 'automatic-feed-links' );
+	add_image_size( 'featured-projects', 288, 145, false );
+	add_theme_support( 'menus' );
+	add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'automatic-feed-links' );
     add_image_size( 'featured-project-thumb', '288', '145', false );
     remove_filter( 'excerpt_more', 'twentyeleven_auto_excerpt_more' );
     remove_filter( 'get_the_excerpt', 'twentyeleven_custom_excerpt_more' );
@@ -739,7 +740,7 @@ function get_homepage_featured_project( $atts, $content = NULL) {
 	), $atts ) );
 	
 	$args = array(
-		'post_type' => 'projects',
+		'post_type' => 'services',
 		'post_status' => array('publish'),
 		'meta_key' => 'field_project_featured',
 		'meta_value' => '1',
@@ -798,15 +799,15 @@ function add_projects_header(){ ?>
 			    });
 			    
 			    /*,
-	        before: function(current, next, opts, forward) {
-	          var $current = $('div[id^="projects-carousel"]', $(current)),
-	              $next = $('div[id^="projects-carousel"]', $(next));
-	              
-	          $current.cycle('destroy');
-	          $next.data('cycleStarted', true).cycle({
-	            pager: $('ul[id^="nav-"]', $next)
-	          });
-	        }*/
+				before: function(current, next, opts, forward) {
+				  var $current = $('div[id^="projects-carousel"]', $(current)),
+					  $next = $('div[id^="projects-carousel"]', $(next));
+					  
+				  $current.cycle('destroy');
+				  $next.data('cycleStarted', true).cycle({
+					pager: $('ul[id^="nav-"]', $next)
+				  });
+				}*/
 			    <?php
 					$args = array(
 						'post_type' => 'projects',
@@ -827,85 +828,86 @@ function add_projects_header(){ ?>
 						endwhile;
 					endif;
 					// Reset Post Data
-					wp_reset_postdata();?>
+					wp_reset_postdata();
+				?>
 			});
 		</script>
 <?php
 }
-
 add_action('wp_head', 'add_projects_header');
 
 
 function get_projects_tab_content( $atts, $content = null ){ 
-		//add_action('wp_head', 'add_projects_header')
-		ob_start(); ?>
-	  <div class="project-nav-wrapper">
-		  <div class="left">
-		  		<div id="project-all-btn">
-		  		  <a href="#"><img src="/oma/wp-content/themes/oma/images/see_all_clients_project.jpg" /></a>
-		  		
+	//add_action('wp_head', 'add_projects_header')
+	ob_start(); ?>
+	<div class="project-nav-wrapper">
+		<div class="left">
+			<div id="project-all-btn">
+				<a href="#"><img src="/oma/wp-content/themes/oma/images/see_all_clients_project.jpg" /></a>
 		  		<div class="project-modal">
-					  <ul id="all-projects">
+					<ul id="all-projects">
 						<?php  
-						  $args = array( 'post_type' => 'projects' );
-              $loop = new WP_Query( $args );
+						$args = array(
+						  'post_type' => 'services',
+						  'post_status' => array('publish'),
+						);
+							
+						$loop = new WP_Query( $args );
 
-              while ( $loop->have_posts() ) : $loop->the_post();
-            ?>
-
-            <li class="<?php 
-              $terms = get_the_terms(get_the_ID(), "Services");
-              $count = count($terms);
-              if ( $count > 0 ){
-                  foreach ( $terms as $term ) {
-                    echo $term->slug;
-                    echo " ";
-                  }
-              }
-             ?>"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyeleven' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></li>
-            <?php                
-              endwhile;
-						?>
-						</ul>
-						<div id="projects-all-right">
+						while ( $loop->have_posts() ) : $loop->the_post(); ?>
+						<li class="<?php 
+						  $terms = get_the_terms(get_the_ID(), "Services");
+						  $count = count($terms);
+						  if ( $count > 0 ){
+							  foreach ( $terms as $term ) {
+								echo $term->slug;
+								echo " ";
+							  }
+						  }
+						?>"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyeleven' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></li>
+						<?php                
+						endwhile; ?>
+					</ul>
+					<div id="projects-all-right">
 						  <h3>View by Service</h3>
-  					  <dl id="projects-filter">
-  						  <dt>Marketing &amp; Advertising</dt>
-                <dd><input type="checkbox" name="lifecycle-marketing" value="lifecycle-marketing" />Lifecycle Marketing</dd>
-                <dd><input type="checkbox" name="social-media" value="social-media" />Social Media</dd>
-                <dd><input type="checkbox" name="media-buying-planning" value="media-buying-planning" />Media Buying/Planning</dd>
-                <dd><input type="checkbox" name="ppc" value="ppc" />PPC</dd>
-                <dd><input type="checkbox" name="seo" value="seo" />SEO</dd>
-                <dt>Web &amp; App Development</dt>
-                <dd><input type="checkbox" name="user-experience" value="user-experience" />User Experience</dd>
-                <dd><input type="checkbox" name="content-strategy" value="content-strategy" />Content Strategy</dd>
-                <dd><input type="checkbox" name="website" value="website" />Website</dd>
-                <dd><input type="checkbox" name="applications" value="applications" />Applications</dd>
-                <dt>Creative</dt>
-                <dd><input type="checkbox" name="branding" value="branding" />Branding</dd>
-                <dd><input type="checkbox" name="interactive" value="interactive" />Interactive</dd>
-                <dd><input type="checkbox" name="traditional" value="traditional" />Traditional</dd>
-                <dt>Public Relations</dt>
-                <dd><input type="checkbox" name="media-relations" value="media-relations" />Media Relations</dd>
-                <dd><input type="checkbox" name="strategic-communications" value="strategic-communications" />Strategic Communications</dd>
-                <dd><input type="checkbox" name="crisis-communications" value="crisis-communications" />Crisis Communications</dd>
-  						</dl>
-						</div>
+						  <dl id="projects-filter">
+							  <dt>Marketing &amp; Advertising</dt>
+								<dd><input type="checkbox" name="lifecycle-marketing" value="lifecycle-marketing" />Lifecycle Marketing</dd>
+								<dd><input type="checkbox" name="social-media" value="social-media" />Social Media</dd>
+								<dd><input type="checkbox" name="media-buying-planning" value="media-buying-planning" />Media Buying/Planning</dd>
+								<dd><input type="checkbox" name="ppc" value="ppc" />PPC</dd>
+								<dd><input type="checkbox" name="seo" value="seo" />SEO</dd>
+							  <dt>Web &amp; App Development</dt>
+								<dd><input type="checkbox" name="user-experience" value="user-experience" />User Experience</dd>
+								<dd><input type="checkbox" name="content-strategy" value="content-strategy" />Content Strategy</dd>
+								<dd><input type="checkbox" name="website" value="website" />Website</dd>
+								<dd><input type="checkbox" name="applications" value="applications" />Applications</dd>
+							  <dt>Creative</dt>
+								<dd><input type="checkbox" name="branding" value="branding" />Branding</dd>
+								<dd><input type="checkbox" name="interactive" value="interactive" />Interactive</dd>
+								<dd><input type="checkbox" name="traditional" value="traditional" />Traditional</dd>
+							  <dt>Public Relations</dt>
+								<dd><input type="checkbox" name="media-relations" value="media-relations" />Media Relations</dd>
+								<dd><input type="checkbox" name="strategic-communications" value="strategic-communications" />Strategic Communications</dd>
+								<dd><input type="checkbox" name="crisis-communications" value="crisis-communications" />Crisis Communications</dd>
+						  </dl>
 					</div>
 				</div>
+		  </div>
 		  </div>
 		  	<div class="left">
 		  		<a href="#"><span id="prev">&lt;</span></a><span class="next-project">NEXT PROJECT</span><a href="#"><span id="next">&gt;</span></a>
 		  	</div>
 		</div>
 	  <div id="projects">
-		<?php						
-				$args = array(
-								'post_type' => 'projects',
-								'post_status' => array('publish'),
-								'order_by' => 'modified',
-							);
-				$featProjects = new WP_Query( $args );
+      <?php						
+		  
+		  $args = array(
+			'post_type' => 'services',
+			'post_status' => array('publish'),
+			'order_by' => 'modified',
+		  );
+		  $featProjects = new WP_Query( $args );
 				if ( $featProjects->have_posts() ) :
 					while ( $featProjects->have_posts() ) : $featProjects->the_post(); 
 					// get_the_ID() is the POST ID  ?>		
@@ -1095,11 +1097,11 @@ add_shortcode( 'get_current_year', 'get_current_year' );
 function add_category_class_single($body_class){
 	global $post;
 	if(isset($post->post_type) && isset($post->post_name)) {
-    $body_class[] = $post->post_type .'-' . $post->post_name;
-  }
-  else{
-  	return 0;
-  }
+		$body_class[] = $post->post_type .'-' . $post->post_name;
+	}
+	else{
+		return 0;
+	}
  	return $body_class;
 }
 add_filter('body_class', 'add_category_class_single');
