@@ -1,12 +1,7 @@
 (function ($) {
   $(document).ready(function() {  
     
-    $('#project-all-btn a').click(function() {      
-      $('.project-modal').toggle('fast', function() {
-        });
-        return false;
-    });
-    
+    // Social Media Hover Intent in Header
     function makeTall() {
       $('#social-icons').animate({width: 132}, 'fast');
     }
@@ -21,10 +16,19 @@
          out: makeShort
     };
     
-    $('.blog article:odd').addClass('odd');
-
-    $("#social-icons").hoverIntent( config )
+    $("#social-icons").hoverIntent( config );
     
+    // Alternate Colors on Blog Feed
+    
+    $('.blog article:odd').addClass('odd');
+    
+    // Project Filter Modal
+    
+    $('#project-all-btn a').click(function() {      
+      $('.project-modal').toggle('fast', function() {
+        });
+        return false;
+    });
     
     var projectFilter = $('#projects-filter dd input');
     

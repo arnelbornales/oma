@@ -3824,7 +3824,7 @@ body #gform_1 ul li {
 }
 
 #all-projects {
-  margin: 16px 0 0 32px;
+  margin: 16px 0 16px 32px;
   width: 242px;
 }
 
@@ -4076,7 +4076,4 @@ img[class*="wp-image-"],
 	padding: 20px;
 	margin-bottom: 20px;
 	font-style: italic;
-}
-.test{
- 
 }

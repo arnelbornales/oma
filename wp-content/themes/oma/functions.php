@@ -847,7 +847,7 @@ function get_projects_tab_content( $atts, $content = null ){
 		  		<div class="project-modal">
 					  <ul id="all-projects">
 						<?php  
-						  $args = array( 'post_type' => 'projects' );
+						  $args = array( 'post_type' => 'projects');
               $loop = new WP_Query( $args );
 
               while ( $loop->have_posts() ) : $loop->the_post();
@@ -869,29 +869,50 @@ function get_projects_tab_content( $atts, $content = null ){
 						</ul>
 						<div id="projects-all-right">
 						  <h3>View by Service</h3>
-  					  <dl id="projects-filter">
-  						  <dt>Marketing &amp; Advertising</dt>
-                <dd><input type="checkbox" name="lifecycle-marketing" value="lifecycle-marketing" />Lifecycle Marketing</dd>
-                <dd><input type="checkbox" name="social-media" value="social-media" />Social Media</dd>
-                <dd><input type="checkbox" name="media-buying-planning" value="media-buying-planning" />Media Buying/Planning</dd>
-                <dd><input type="checkbox" name="ppc" value="ppc" />PPC</dd>
-                <dd><input type="checkbox" name="seo" value="seo" />SEO</dd>
-                <dt>Web &amp; App Development</dt>
-                <dd><input type="checkbox" name="user-experience" value="user-experience" />User Experience</dd>
-                <dd><input type="checkbox" name="content-strategy" value="content-strategy" />Content Strategy</dd>
-                <dd><input type="checkbox" name="website" value="website" />Website</dd>
-                <dd><input type="checkbox" name="applications" value="applications" />Applications</dd>
-                <dt>Creative</dt>
-                <dd><input type="checkbox" name="branding" value="branding" />Branding</dd>
-                <dd><input type="checkbox" name="interactive" value="interactive" />Interactive</dd>
-                <dd><input type="checkbox" name="traditional" value="traditional" />Traditional</dd>
-                <dt>Public Relations</dt>
-                <dd><input type="checkbox" name="media-relations" value="media-relations" />Media Relations</dd>
-                <dd><input type="checkbox" name="strategic-communications" value="strategic-communications" />Strategic Communications</dd>
-                <dd><input type="checkbox" name="crisis-communications" value="crisis-communications" />Crisis Communications</dd>
-  						</dl>
+						  
+						  <?php
+
+    				  $taxonomyName = "Services";
+              //This gets top layer terms only.  This is done by setting parent to 0.  
+              $parent_terms = get_terms($taxonomyName, array('parent' => 0, 'orderby' => 'slug', 'hide_empty' => false));   
+              echo '<dl id="projects-filter">';
+              foreach ($parent_terms as $pterm) {
+                  //Get the Child terms
+                  echo '<dt>' . $pterm->name . '</dt>';
+
+                  $terms = get_terms($taxonomyName, array('parent' => $pterm->term_id, 'orderby' => 'slug', 'hide_empty' => false));
+                  foreach ($terms as $term) {
+                      echo '<dd><input type="checkbox" name="' . $term->slug . '" value="' . $term->slug . '" />' . $term->name . '</a></dd>';  
+                  }
+              }
+              echo '</dl>';
+
+    				  ?>
+						  
+  					  <!-- <dl id="projects-filter">
+  					                 <dt>Marketing &amp; Advertising</dt>
+  					                  <dd><input type="checkbox" name="lifecycle-marketing" value="lifecycle-marketing" />Lifecycle Marketing</dd>
+  					                  <dd><input type="checkbox" name="social-media" value="social-media" />Social Media</dd>
+  					                  <dd><input type="checkbox" name="media-buying-planning" value="media-buying-planning" />Media Buying/Planning</dd>
+  					                  <dd><input type="checkbox" name="ppc" value="ppc" />PPC</dd>
+  					                  <dd><input type="checkbox" name="seo" value="seo" />SEO</dd>
+  					                  <dt>Web &amp; App Development</dt>
+  					                  <dd><input type="checkbox" name="user-experience" value="user-experience" />User Experience</dd>
+  					                  <dd><input type="checkbox" name="content-strategy" value="content-strategy" />Content Strategy</dd>
+  					                  <dd><input type="checkbox" name="website" value="website" />Website</dd>
+  					                  <dd><input type="checkbox" name="applications" value="applications" />Applications</dd>
+  					                  <dt>Creative</dt>
+  					                  <dd><input type="checkbox" name="branding" value="branding" />Branding</dd>
+  					                  <dd><input type="checkbox" name="interactive" value="interactive" />Interactive</dd>
+  					                  <dd><input type="checkbox" name="traditional" value="traditional" />Traditional</dd>
+  					                  <dt>Public Relations</dt>
+  					                  <dd><input type="checkbox" name="media-relations" value="media-relations" />Media Relations</dd>
+  					                  <dd><input type="checkbox" name="strategic-communications" value="strategic-communications" />Strategic Communications</dd>
+  					                  <dd><input type="checkbox" name="crisis-communications" value="crisis-communications" />Crisis Communications</dd>
+  					               </dl> -->
 						</div>
 					</div>
+				
 				</div>
 		  </div>
 		  	<div class="left">
