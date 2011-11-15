@@ -1,0 +1,7 @@
+/* For Rich Text Tags & Taxonomy WordPress Plugin */
+textarea#description, textarea#category_description { 
+	height:400px;
+}
+#description_tbl { 
+	border:1px solid #666; 
+}

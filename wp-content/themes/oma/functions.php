@@ -420,6 +420,8 @@ function twentyeleven_widgets_init() {
 }
 add_action( 'widgets_init', 'twentyeleven_widgets_init' );
 
+register_taxonomy("services", array("projects"), array("hierarchical" => true, "label" => "Related Services", "singular_label" => "Related Services", "query_var" => true , "rewrite" => true));
+	
 /**
  * Display navigation to next/previous pages when applicable
  */
@@ -740,7 +742,7 @@ function get_homepage_featured_project( $atts, $content = NULL) {
 	), $atts ) );
 	
 	$args = array(
-		'post_type' => 'services',
+		'post_type' => 'projects',
 		'post_status' => array('publish'),
 		'meta_key' => 'field_project_featured',
 		'meta_value' => '1',
@@ -765,7 +767,7 @@ function get_homepage_featured_project( $atts, $content = NULL) {
 					</div>
 					<div class="featured-project-tags">
 							<div class="related-services">RELATED SERVICES</div>
-							<div class="related-services-tags"><?php the_terms( get_the_ID(), 'Services' , '', '', '' ); ?></div>
+							<div class="related-services-tags"><?php the_terms( get_the_ID(), 'services' , '', '', '' ); ?></div>
 					</div>
 				</div>
 	  </div><?php
@@ -848,7 +850,8 @@ function get_projects_tab_content( $atts, $content = null ){
 					<ul id="all-projects">
 						<?php  
 						$args = array(
-						  'post_type' => 'services',
+						  'post_type' => 'projects',
+						  //'category_name' => 'services',
 						  'post_status' => array('publish'),
 						);
 							
@@ -856,7 +859,7 @@ function get_projects_tab_content( $atts, $content = null ){
 
 						while ( $loop->have_posts() ) : $loop->the_post(); ?>
 						<li class="<?php 
-						  $terms = get_the_terms(get_the_ID(), "Services");
+						  $terms = get_the_terms(get_the_ID(), "services");
 						  $count = count($terms);
 						  if ( $count > 0 ){
 							  foreach ( $terms as $term ) {
@@ -903,7 +906,8 @@ function get_projects_tab_content( $atts, $content = null ){
       <?php						
 		  
 		  $args = array(
-			'post_type' => 'services',
+			'post_type' => 'projects',
+			//'category_name' => 'Services',
 			'post_status' => array('publish'),
 			'order_by' => 'modified',
 		  );
@@ -937,7 +941,7 @@ function get_projects_tab_content( $atts, $content = null ){
 						    		</dl>
 						    		<dl class="services-cat">
 						    		  <dt>Services:</dt>
-						    		  <?php the_terms( get_the_ID(), 'Services' , '<dd>', '</dd><dd>', '</dd>' ); ?>
+						    		  <?php the_terms( get_the_ID(), 'services' , '<dd>', '</dd><dd>', '</dd>' ); ?>
 						    	  </dl>
 						    		<a href="<?php echo get_post_meta(get_the_ID(), 'field_project_view_site' , true); ?>" class="projects-view-site">VIEW SITE</a>
 								</div>
@@ -1000,22 +1004,38 @@ function get_marketing_advertiing_tab_content( $atts, $content = null ){
 			'page_id' => 'page_id',
 			'page_id_b' => 'page_id_b',
 		), $atts ) );
-		$query_left = new WP_Query( 'page_id='.$page_id.'' );
+		$args = array('post_type' => 'services',
+					  'post_status' => array('publish'),
+					  'page_id' => $page_id,
+				);
+		$query_left = new WP_Query( $args );
 		ob_start();
 		?>
 	  <div class="inner-tab-wrapper clear-after clear"><?php
 		if ( $query_left->have_posts() ) :?>
 			  <div class="marketing-wrapper"><?php	
+				  
+					$terms = get_term_by('id', 4, 'services');
+					print '<h1>';
+					print_r($terms->description);
+					print '</h1>';
 					
 					while ( $query_left->have_posts() ) : $query_left->the_post(); ?>
 					<div class="marketing-wrapper-left left">  	
-				    	<h2 class="inner-tab-title"><a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo the_title(); ?></a></h2>
-							<span class="inner-tab-sub-headline"><?php echo get_post_meta(get_the_ID(), 'field_sub_headline' , true); ?></span>
+				    	<h2 class="inner-tab-title"><a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo get_post_meta(get_the_ID(), 'field_inner_title_quicktab' , true); ?></a></h2>
+							<span class="inner-tab-sub-headline"><?php echo get_post_meta(get_the_ID(), 'field_inner_sub_title_quicktab' , true); ?></span>
 							<?php echo the_content(); ?>
 					</div><?php
 					endwhile; 
 					
 					wp_reset_postdata();
+					/**
+					 $args = array('post_type' => 'services',
+									  'post_status' => array('publish'),
+									  'page_id' => $page_id_b,
+									  );
+					$query_right = new WP_Query( $args );
+					*/	
 					$query_right = new WP_Query( 'page_id='.$page_id_b.'' ); 
 					while ( $query_right->have_posts() ) : $query_right->the_post(); ?>
 					<div class="marketing-wrapper-right right" style="">									
