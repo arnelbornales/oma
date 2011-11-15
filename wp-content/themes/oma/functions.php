@@ -1015,10 +1015,10 @@ function get_marketing_advertiing_tab_content( $atts, $content = null ){
 		if ( $query_left->have_posts() ) :?>
 			  <div class="marketing-wrapper"><?php	
 				  
-					$terms = get_term_by('id', 4, 'services');
-					print '<h1>';
-					print_r($terms->description);
-					print '</h1>';
+					//$terms = get_term_by('id', 4, 'services');
+					//print '<h1>';
+					//print_r($terms->description);
+					//print '</h1>';
 					
 					while ( $query_left->have_posts() ) : $query_left->the_post(); ?>
 					<div class="marketing-wrapper-left left">  	
