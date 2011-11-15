@@ -1002,7 +1002,7 @@ add_shortcode( 'get_process_tab_content', 'get_process_tab_content' );
 
 
 
-function get_marketing_advertising_tab_content( $atts, $content = null ){
+function get_services_tab_content( $atts, $content = null ){
 		extract( shortcode_atts( array(
 			'page_id' => 'page_id',
 			'page_id_b' => 'page_id_b',
@@ -1056,7 +1056,7 @@ function get_marketing_advertising_tab_content( $atts, $content = null ){
 		ob_end_clean();
 		return $content;
 }
-add_shortcode( 'get_marketing_advertising_tab_content', 'get_marketing_advertising_tab_content' );
+add_shortcode( 'get_services_tab_content', 'get_services_tab_content' );
 
 
 //http://codex.wordpress.org/Template_Tags/get_posts
