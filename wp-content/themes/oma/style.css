@@ -3106,10 +3106,10 @@ body .gform_wrapper form .gform_body ul li {
 }
 #content-blurb-inner article{
 		padding-top: 20px;
-		height: 100px;
 }
 #content-blurb-inner header{
 		float: left;
+		height: 100px;
 }
 #content-blurb-inner header h1{
 		text-indent: -9999px;
@@ -3756,7 +3756,7 @@ body #gform_1 ul li {
 
 
 #projects-tab { min-height: 600px;}
-#projects { min-height: 1600px;  padding:0; margin: 20px 0 0 0; }
+#projects { min-height: 600px;  padding:0; margin: 20px 0 0 0; }
 .projects img { height: 200px; width: 200px; padding: 15px; border: 1px solid #ccc; background-color: #eee; top:0; left:0 }
 .projects img { -moz-border-radius: 10px; -webkit-border-radius: 10px; }
 /** END - Our Work Page - Process Tab */

@@ -788,8 +788,7 @@ function add_projects_header(){ ?>
 			jQuery(document).ready(function() {
 			
 			    jQuery('#projects').cycle({
-			        //fx:      'fade',
-			        fx:      'scrollHorz',
+			        fx:      'fade',
 			        timeout:  0,
 			        prev:    '#prev',
 			        next:    '#next',
@@ -821,11 +820,10 @@ function add_projects_header(){ ?>
 						while ( $featProjects->have_posts() ) : $featProjects->the_post();?>
 					  
 						jQuery('#projects-carousel-<?php echo get_the_ID(); ?>').cycle({
-						              fx:      'fade',
-						              timeout:  0,
+						              fx:      'scrollHorz',
+									  timeout:  0,
 						              pager:   '#nav-<?php echo get_the_ID(); ?>'
-						            });
-						
+						});
 						<?php
 						endwhile;
 					endif;
