@@ -9,8 +9,25 @@
 
 get_header(); ?>
 
-		<section id="primary">
+		<div id="content-blurb-wrapper" class="clear">
+      <div id="content-blurb-inner">
+        <article>
+    	    <header class="blurb-title">
+    		    <h1 class="entry-title">BLOG</h1>
+    	    </header><!-- .entry-header -->
+    	    <div class="blurb-body">
+            <p>Gain insight into the fast-paced world of Off Madison Ave, where a thoughtful approach, industry expertise and an unwavering dedication to our craft combine to make your brand more successful.</p>
+        </div>
+        </article>
+      </div>
+    </div>
+    <div id="content-page-wrapper" class="clear">
+    
+    <div id="blog-wrap">
+      <div id="blog-container">
+		<div id="primary">
 			<div id="content" role="main">
+			  <h2 class="blog-title">Recent Posts</h2>
 
 			<?php if ( have_posts() ) : ?>
 
@@ -19,11 +36,7 @@ get_header(); ?>
 						printf( __( 'Category Archives: %s', 'twentyeleven' ), '<span>' . single_cat_title( '', false ) . '</span>' );
 					?></h1>
 
-					<?php
-						$category_description = category_description();
-						if ( ! empty( $category_description ) )
-							echo apply_filters( 'category_archive_meta', '<div class="category-archive-meta">' . $category_description . '</div>' );
-					?>
+					
 				</header>
 
 				<?php twentyeleven_content_nav( 'nav-above' ); ?>
@@ -60,6 +73,14 @@ get_header(); ?>
 
 			</div><!-- #content -->
 		</section><!-- #primary -->
+		
+		</div>
+		<?php get_sidebar(); ?>
+		</div>
+	</div>
+		<div id="content-closure" class="clear">
+      <div id="content-closure-wrapper"></div>
+    </div>
 
-<?php get_sidebar(); ?>
+
 <?php get_footer(); ?>
