@@ -420,6 +420,8 @@ function twentyeleven_widgets_init() {
 }
 add_action( 'widgets_init', 'twentyeleven_widgets_init' );
 
+register_taxonomy("services", array("projects"), array("hierarchical" => true, "label" => "Related Services", "singular_label" => "Related Services", "query_var" => true , "rewrite" => true));
+	
 /**
  * Display navigation to next/previous pages when applicable
  */
@@ -599,7 +601,7 @@ add_filter( 'body_class', 'twentyeleven_body_classes' );
 /*****************************************************************/
 
 function oma_init() {
-	remove_action( 'wp_head', 'feed_links_extra', 3 );
+	/*remove_action( 'wp_head', 'feed_links_extra', 3 );
 	remove_action( 'wp_head', 'feed_links', 2 );
 	remove_action( 'wp_head', 'rsd_link' );
 	remove_action( 'wp_head', 'wlwmanifest_link' );
@@ -608,6 +610,7 @@ function oma_init() {
 	remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
 	remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 );
 	remove_action( 'wp_head', 'wp_generator' );
+	*/
 	add_filter( 'show_recent_comments_widget_style', '__return_false' );
 }
 add_action( 'init', 'oma_init' );
@@ -616,7 +619,7 @@ add_action( 'init', 'oma_init' );
 function oma_widgets_init() {
 	unregister_widget( 'WP_Widget_Pages' );
 	unregister_widget( 'WP_Widget_Calendar' );
-	//unregister_widget( 'WP_Widget_Archives' );
+	unregister_widget( 'WP_Widget_Archives' );
 	unregister_widget( 'WP_Widget_Links' );
 	unregister_widget( 'WP_Widget_Meta' );
 	unregister_widget( 'WP_Widget_Search' );
@@ -681,10 +684,10 @@ add_action( 'widgets_init', 'oma_widgets_init', 1 );
 
 
 function oma_setup_theme() {
-		add_image_size( 'featured-projects', 288, 145, false );
-		add_theme_support( 'menus' );
-		add_theme_support( 'post-thumbnails' );
-		add_theme_support( 'automatic-feed-links' );
+	add_image_size( 'featured-projects', 288, 145, false );
+	add_theme_support( 'menus' );
+	add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'automatic-feed-links' );
     add_image_size( 'featured-project-thumb', '288', '145', false );
     remove_filter( 'excerpt_more', 'twentyeleven_auto_excerpt_more' );
     remove_filter( 'get_the_excerpt', 'twentyeleven_custom_excerpt_more' );
@@ -764,7 +767,7 @@ function get_homepage_featured_project( $atts, $content = NULL) {
 					</div>
 					<div class="featured-project-tags">
 							<div class="related-services">RELATED SERVICES</div>
-							<div class="related-services-tags"><?php the_terms( get_the_ID(), 'Services' , '', '', '' ); ?></div>
+							<div class="related-services-tags"><?php the_terms( get_the_ID(), 'services' , '', '', '' ); ?></div>
 					</div>
 				</div>
 	  </div><?php
@@ -785,8 +788,7 @@ function add_projects_header(){ ?>
 			jQuery(document).ready(function() {
 			
 			    jQuery('#projects').cycle({
-			        //fx:      'fade',
-			        fx:      'scrollHorz',
+			        fx:      'fade',
 			        timeout:  0,
 			        prev:    '#prev',
 			        next:    '#next',
@@ -798,55 +800,54 @@ function add_projects_header(){ ?>
 			    });
 			    
 			    /*,
-	        before: function(current, next, opts, forward) {
-	          var $current = $('div[id^="projects-carousel"]', $(current)),
-	              $next = $('div[id^="projects-carousel"]', $(next));
-	              
-	          $current.cycle('destroy');
-	          $next.data('cycleStarted', true).cycle({
-	            pager: $('ul[id^="nav-"]', $next)
-	          });
-	        }*/
+				before: function(current, next, opts, forward) {
+				  var $current = $('div[id^="projects-carousel"]', $(current)),
+					  $next = $('div[id^="projects-carousel"]', $(next));
+					  
+				  $current.cycle('destroy');
+				  $next.data('cycleStarted', true).cycle({
+					pager: $('ul[id^="nav-"]', $next)
+				  });
+				}*/
 			    <?php
 					$args = array(
 						'post_type' => 'projects',
-						'post_status' => array('publish'),
-						'order_by' => 'modified',
+						//'post_status' => array('publish'),
+						//'order_by' => 'modified',
 					);
 					$featProjects = new WP_Query( $args );
 					if ( $featProjects->have_posts() ) :
 						while ( $featProjects->have_posts() ) : $featProjects->the_post();?>
 					  
 						jQuery('#projects-carousel-<?php echo get_the_ID(); ?>').cycle({
-						              fx:      'fade',
-						              timeout:  0,
+						              fx:      'scrollHorz',
+									  timeout:  0,
 						              pager:   '#nav-<?php echo get_the_ID(); ?>'
-						            });
-						
+						});
 						<?php
 						endwhile;
 					endif;
 					// Reset Post Data
-					wp_reset_postdata();?>
+					wp_reset_postdata();
+				?>
 			});
 		</script>
 <?php
 }
-
 add_action('wp_head', 'add_projects_header');
 
 
 function get_projects_tab_content( $atts, $content = null ){ 
-		//add_action('wp_head', 'add_projects_header')
-		ob_start(); ?>
-	  <div class="project-nav-wrapper">
-		  <div class="left">
-		  		<div id="project-all-btn">
-		  		  <a href="#"><img src="/oma/wp-content/themes/oma/images/see_all_clients_project.jpg" /></a>
-		  		
+	//add_action('wp_head', 'add_projects_header')
+	ob_start(); ?>
+	<div class="project-nav-wrapper">
+		<div class="left">
+			<div id="project-all-btn">
+				<a href="#"><img src="/oma/wp-content/themes/oma/images/see_all_clients_project.jpg" /></a>
 		  		<div class="project-modal">
-					  <ul id="all-projects">
+					<ul id="all-projects">
 						<?php  
+<<<<<<< HEAD
 						  $args = array( 'post_type' => 'projects');
               $loop = new WP_Query( $args );
 
@@ -911,59 +912,112 @@ function get_projects_tab_content( $atts, $content = null ){
   					                  <dd><input type="checkbox" name="crisis-communications" value="crisis-communications" />Crisis Communications</dd>
   					               </dl> -->
 						</div>
+=======
+						$args = array(
+						  'post_type' => 'projects',
+						  //'category_name' => 'services',
+						  'post_status' => array('publish'),
+						);
+							
+						$loop = new WP_Query( $args );
+
+						while ( $loop->have_posts() ) : $loop->the_post(); ?>
+						<li class="<?php 
+						  $terms = get_the_terms(get_the_ID(), "services");
+						  $count = count($terms);
+						  if ( $count > 0 ){
+							  foreach ( $terms as $term ) {
+								echo $term->slug;
+								echo " ";
+							  }
+						  }
+						?>"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyeleven' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></li>
+						<?php                
+						endwhile;
+						wp_reset_postdata();?>
+					</ul>
+					<div id="projects-all-right">
+						  <h3>View by Service</h3>
+						  <dl id="projects-filter">
+							  <dt>Marketing &amp; Advertising</dt>
+								<dd><input type="checkbox" name="lifecycle-marketing" value="lifecycle-marketing" />Lifecycle Marketing</dd>
+								<dd><input type="checkbox" name="social-media" value="social-media" />Social Media</dd>
+								<dd><input type="checkbox" name="media-buying-planning" value="media-buying-planning" />Media Buying/Planning</dd>
+								<dd><input type="checkbox" name="ppc" value="ppc" />PPC</dd>
+								<dd><input type="checkbox" name="seo" value="seo" />SEO</dd>
+							  <dt>Web &amp; App Development</dt>
+								<dd><input type="checkbox" name="user-experience" value="user-experience" />User Experience</dd>
+								<dd><input type="checkbox" name="content-strategy" value="content-strategy" />Content Strategy</dd>
+								<dd><input type="checkbox" name="website" value="website" />Website</dd>
+								<dd><input type="checkbox" name="applications" value="applications" />Applications</dd>
+							  <dt>Creative</dt>
+								<dd><input type="checkbox" name="branding" value="branding" />Branding</dd>
+								<dd><input type="checkbox" name="interactive" value="interactive" />Interactive</dd>
+								<dd><input type="checkbox" name="traditional" value="traditional" />Traditional</dd>
+							  <dt>Public Relations</dt>
+								<dd><input type="checkbox" name="media-relations" value="media-relations" />Media Relations</dd>
+								<dd><input type="checkbox" name="strategic-communications" value="strategic-communications" />Strategic Communications</dd>
+								<dd><input type="checkbox" name="crisis-communications" value="crisis-communications" />Crisis Communications</dd>
+						  </dl>
+>>>>>>> cbec90b8c8ac98b91835a617fe72e102f98adc00
 					</div>
 				
 				</div>
+		  </div>
 		  </div>
 		  	<div class="left">
 		  		<a href="#"><span id="prev">&lt;</span></a><span class="next-project">NEXT PROJECT</span><a href="#"><span id="next">&gt;</span></a>
 		  	</div>
 		</div>
 	  <div id="projects">
-		<?php						
-				$args = array(
-								'post_type' => 'projects',
-								'post_status' => array('publish'),
-								'order_by' => 'modified',
-							);
-				$featProjects = new WP_Query( $args );
+      <?php						
+		  
+		  $args = array(
+			'post_type' => 'projects',
+			//'category_name' => 'Services',
+			'post_status' => array('publish'),
+			'order_by' => 'modified',
+		  );
+		  $featProjects = new WP_Query( $args );
+				$i = 1;
 				if ( $featProjects->have_posts() ) :
 					while ( $featProjects->have_posts() ) : $featProjects->the_post(); 
 					// get_the_ID() is the POST ID  ?>		
 					<div class="inner-tab-wrapper">	
-				    <div class="projects-wrapper-left left">
-				    	
-				    	<?php $carousel_images = get_post_meta(get_the_ID(), 'field_images_carousel', true); ?>
+						<div class="projects-wrapper-left left">
+							<?php $carousel_images = get_post_meta(get_the_ID(), 'field_images_carousel', true); ?>
 							<h2 class="inner-tab-title">
-							<a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo the_title(); ?></a></h2>
+							<a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo the_title(); ?><?php echo $i; ?></a>
+							</h2>
 							<span class="inner-tab-sub-headline"><?php echo get_post_meta(get_the_ID(), 'field_sub_headline' , true); ?></span>					
 							<?php echo the_content(); ?>
 						</div>
 						
 						<div class="projects-wrapper-right right" style="">									
-								<div id = "project-<?php echo get_the_ID(); ?>" class = "project-wrapper" style="clear:both;">
-										<div id="projects-carousel-<?php echo get_the_ID(); ?>" class="projects-carousel">
-										<?php
-											foreach($carousel_images as $key){ ?>
-												<img src="<?php echo $key['image']; ?>" /><?php 
-											}?>
-							    	</div>
+							<div id = "project-<?php echo get_the_ID(); ?>" class = "project-wrapper" style="clear:both;">
+								<div id="projects-carousel-<?php echo get_the_ID(); ?>" class="projects-carousel">
+								<?php
+									foreach($carousel_images as $key){ ?>
+										<img src="<?php echo $key['image']; ?>" /><?php 
+									}
+								?>
+								</div>
 						    							    	
-						    		<ul id="nav-<?php echo get_the_ID(); ?>" class="projects-pagi"></ul>
-						    		<dl class="project-launched services-cat">
-						    		  <dt>Launched:</dt> 
-						    		  <dd><?php echo get_post_meta(get_the_ID(), 'field_project_launched' , true); ?></dd>
-						    		</dl>
-						    		<dl class="services-cat">
-						    		  <dt>Services:</dt>
-						    		  <?php the_terms( get_the_ID(), 'Services' , '<dd>', '</dd><dd>', '</dd>' ); ?>
-						    	  </dl>
+						    	<ul id="nav-<?php echo get_the_ID(); ?>" class="projects-pagi"></ul>
+						    	<dl class="project-launched services-cat">
+						    		<dt>Launched:</dt> 
+									<dd><?php echo get_post_meta(get_the_ID(), 'field_project_launched' , true); ?></dd>
+						    	</dl>
+								<dl class="services-cat">
+									<dt>Services:</dt>
+									<?php the_terms( get_the_ID(), 'services' , '<dd>', '</dd><dd>', '</dd>' ); ?>
+								</dl>
 						    		<a href="<?php echo get_post_meta(get_the_ID(), 'field_project_view_site' , true); ?>" class="projects-view-site">VIEW SITE</a>
 								</div>
+							</div>
 						</div>
-						
-					</div>
 				  <?php
+				  $i++;
 				  endwhile;
 			  endif;
 			  wp_reset_postdata();?>
@@ -978,29 +1032,29 @@ add_shortcode( 'get_projects_tab_content', 'get_projects_tab_content' );
 
 function get_process_tab_content( $atts, $content = null ){
 		$args = array(
-								'post_type' => 'process',
-								'post_status' => array('publish'),
-								'order_by' => 'modified',
-							);
+			'post_type' => 'process',
+			'post_status' => array('publish'),
+			'order_by' => 'modified',
+		);
 		$process = new WP_Query( $args );
 		ob_start();
 		if ( $process->have_posts() ) :
 			while ( $process->have_posts() ) : $process->the_post(); ?>
 			  <div class="inner-tab-wrapper">	
 					<div class="process-wrapper-left left">  	
-				    	<?php $carousel_images = get_post_meta(get_the_ID(), 'field_images_carousel', true); ?>
-							<h2 class="inner-tab-title"><a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo the_title(); ?></a></h2>
-							<span class="inner-tab-sub-headline"><?php echo get_post_meta(get_the_ID(), 'field_sub_headline' , true); ?></span>
-							<?php echo the_content(); ?>
+					<?php $carousel_images = get_post_meta(get_the_ID(), 'field_images_carousel', true); ?>
+						<h2 class="inner-tab-title"><a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo the_title(); ?></a></h2>
+						<span class="inner-tab-sub-headline"><?php echo get_post_meta(get_the_ID(), 'field_sub_headline' , true); ?></span>
+						<?php echo the_content(); ?>
 					</div>
 					<div class="process-wrapper-right right" style="">									
-							<div id="process" class="process-carousel">
-								<?php
-								foreach($carousel_images as $key){ ?>
-										<img src="<?php echo $key['image']; ?>" /><?php 
-								}?>
-					    </div>
-				    	<ul id="process-nav" class="process-pagi"></ul>
+						<div id="process" class="process-carousel">
+							<?php
+							foreach($carousel_images as $key){ ?>
+								<img src="<?php echo $key['image']; ?>" /><?php 
+							}?>
+						</div>
+						<ul id="process-nav" class="process-pagi"></ul>
 					</div>
 				</div><?php
 			endwhile;
@@ -1014,27 +1068,43 @@ add_shortcode( 'get_process_tab_content', 'get_process_tab_content' );
 
 
 
-function get_marketing_advertiing_tab_content( $atts, $content = null ){
+function get_services_tab_content( $atts, $content = null ){
 		extract( shortcode_atts( array(
 			'page_id' => 'page_id',
 			'page_id_b' => 'page_id_b',
 		), $atts ) );
-		$query_left = new WP_Query( 'page_id='.$page_id.'' );
+		$args = array('post_type' => 'pages',
+					  'post_status' => array('publish'),
+					  'page_id' => $page_id,
+				);
+		$query_left = new WP_Query( $args );
 		ob_start();
 		?>
-	  <div class="inner-tab-wrapper clear-after clear"><?php
+	    <div class="inner-tab-wrapper clear-after clear"><?php
 		if ( $query_left->have_posts() ) :?>
 			  <div class="marketing-wrapper"><?php	
+				  
+					//$terms = get_term_by('id', 4, 'services');
+					//print '<h1>';
+					//print_r($terms->description);
+					//print '</h1>';
 					
 					while ( $query_left->have_posts() ) : $query_left->the_post(); ?>
 					<div class="marketing-wrapper-left left">  	
-				    	<h2 class="inner-tab-title"><a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo the_title(); ?></a></h2>
-							<span class="inner-tab-sub-headline"><?php echo get_post_meta(get_the_ID(), 'field_sub_headline' , true); ?></span>
+				    	<h2 class="inner-tab-title"><a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo get_post_meta(get_the_ID(), 'field_inner_title_quicktab' , true); ?></a></h2>
+							<span class="inner-tab-sub-headline"><?php echo get_post_meta(get_the_ID(), 'field_inner_sub_title_quicktab' , true); ?></span>
 							<?php echo the_content(); ?>
 					</div><?php
 					endwhile; 
 					
 					wp_reset_postdata();
+					/**
+					 $args = array('post_type' => 'services',
+									  'post_status' => array('publish'),
+									  'page_id' => $page_id_b,
+									  );
+					$query_right = new WP_Query( $args );
+					*/	
 					$query_right = new WP_Query( 'page_id='.$page_id_b.'' ); 
 					while ( $query_right->have_posts() ) : $query_right->the_post(); ?>
 					<div class="marketing-wrapper-right right" style="">									
@@ -1052,7 +1122,7 @@ function get_marketing_advertiing_tab_content( $atts, $content = null ){
 		ob_end_clean();
 		return $content;
 }
-add_shortcode( 'get_marketing_advertiing_tab_content', 'get_marketing_advertiing_tab_content' );
+add_shortcode( 'get_services_tab_content', 'get_services_tab_content' );
 
 
 //http://codex.wordpress.org/Template_Tags/get_posts
@@ -1116,11 +1186,11 @@ add_shortcode( 'get_current_year', 'get_current_year' );
 function add_category_class_single($body_class){
 	global $post;
 	if(isset($post->post_type) && isset($post->post_name)) {
-    $body_class[] = $post->post_type .'-' . $post->post_name;
-  }
-  else{
-  	return 0;
-  }
+		$body_class[] = $post->post_type .'-' . $post->post_name;
+	}
+	else{
+		return 0;
+	}
  	return $body_class;
 }
 add_filter('body_class', 'add_category_class_single');
