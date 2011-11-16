@@ -849,48 +849,45 @@ function get_projects_tab_content( $atts, $content = null ){
 						<?php  
 
 						  $args = array( 'post_type' => 'projects');
-              $loop = new WP_Query( $args );
+						  $loop = new WP_Query( $args );
 
-              while ( $loop->have_posts() ) : $loop->the_post();
-            ?>
+						  while ( $loop->have_posts() ) : $loop->the_post();
+						  ?>
 
-            <li class="<?php 
-              $terms = get_the_terms(get_the_ID(), "Services");
-              $count = count($terms);
-              if ( $count > 0 ){
-                  foreach ( $terms as $term ) {
-                    echo $term->slug;
-                    echo " ";
-                  }
-              }
-             ?>"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyeleven' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></li>
-            <?php                
-              endwhile;
-						?>
-						</ul>
+							<li class="<?php 
+							  $terms = get_the_terms(get_the_ID(), "services");
+							  $count = count($terms);
+							  if ( $count > 0 ){
+								  foreach ( $terms as $term ) {
+									echo $term->slug;
+									echo " ";
+								  }
+							  }
+							?>"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyeleven' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></li>
+						  <?php                
+						  endwhile;
+						  ?>
+					</ul>
 						<div id="projects-all-right">
 						  <h3>View by Service</h3>
-						  
 						  <?php
 
-    				  $taxonomyName = "Services";
-              //This gets top layer terms only.  This is done by setting parent to 0.  
-              $parent_terms = get_terms($taxonomyName, array('parent' => 0, 'orderby' => 'slug', 'hide_empty' => false));   
-              echo '<dl id="projects-filter">';
-              foreach ($parent_terms as $pterm) {
-                  //Get the Child terms
-                  echo '<dt>' . $pterm->name . '</dt>';
+							  $taxonomyName = "services";
+							  //This gets top layer terms only.  This is done by setting parent to 0.  
+							  $parent_terms = get_terms($taxonomyName, array('parent' => 0, 'orderby' => 'slug', 'hide_empty' => false));   
+							  echo '<dl id="projects-filter">';
+							  foreach ($parent_terms as $pterm) {
+								  //Get the Child terms
+								  echo '<dt>' . $pterm->name . '</dt>';
 
-                  $terms = get_terms($taxonomyName, array('parent' => $pterm->term_id, 'orderby' => 'slug', 'hide_empty' => false));
-                  foreach ($terms as $term) {
-                      echo '<dd><input type="checkbox" name="' . $term->slug . '" value="' . $term->slug . '" />' . $term->name . '</a></dd>';  
-                  }
-              }
-              echo '</dl>';
-
-    				  ?>
-						  
-  					  <!-- <dl id="projects-filter">
+								  $terms = get_terms($taxonomyName, array('parent' => $pterm->term_id, 'orderby' => 'slug', 'hide_empty' => false));
+								  foreach ($terms as $term) {
+									  echo '<dd><input type="checkbox" name="' . $term->slug . '" value="' . $term->slug . '" />' . $term->name . '</a></dd>';  
+								  }
+							  }
+							  echo '</dl>';
+						?>
+						<!-- <dl id="projects-filter">
   					                 <dt>Marketing &amp; Advertising</dt>
   					                  <dd><input type="checkbox" name="lifecycle-marketing" value="lifecycle-marketing" />Lifecycle Marketing</dd>
   					                  <dd><input type="checkbox" name="social-media" value="social-media" />Social Media</dd>
