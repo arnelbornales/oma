@@ -847,7 +847,7 @@ function get_projects_tab_content( $atts, $content = null ){
 		  		<div class="project-modal">
 					<ul id="all-projects">
 						<?php  
-<<<<<<< HEAD
+
 						  $args = array( 'post_type' => 'projects');
               $loop = new WP_Query( $args );
 
@@ -912,55 +912,6 @@ function get_projects_tab_content( $atts, $content = null ){
   					                  <dd><input type="checkbox" name="crisis-communications" value="crisis-communications" />Crisis Communications</dd>
   					               </dl> -->
 						</div>
-=======
-						$args = array(
-						  'post_type' => 'projects',
-						  //'category_name' => 'services',
-						  'post_status' => array('publish'),
-						);
-							
-						$loop = new WP_Query( $args );
-
-						while ( $loop->have_posts() ) : $loop->the_post(); ?>
-						<li class="<?php 
-						  $terms = get_the_terms(get_the_ID(), "services");
-						  $count = count($terms);
-						  if ( $count > 0 ){
-							  foreach ( $terms as $term ) {
-								echo $term->slug;
-								echo " ";
-							  }
-						  }
-						?>"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyeleven' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></li>
-						<?php                
-						endwhile;
-						wp_reset_postdata();?>
-					</ul>
-					<div id="projects-all-right">
-						  <h3>View by Service</h3>
-						  <dl id="projects-filter">
-							  <dt>Marketing &amp; Advertising</dt>
-								<dd><input type="checkbox" name="lifecycle-marketing" value="lifecycle-marketing" />Lifecycle Marketing</dd>
-								<dd><input type="checkbox" name="social-media" value="social-media" />Social Media</dd>
-								<dd><input type="checkbox" name="media-buying-planning" value="media-buying-planning" />Media Buying/Planning</dd>
-								<dd><input type="checkbox" name="ppc" value="ppc" />PPC</dd>
-								<dd><input type="checkbox" name="seo" value="seo" />SEO</dd>
-							  <dt>Web &amp; App Development</dt>
-								<dd><input type="checkbox" name="user-experience" value="user-experience" />User Experience</dd>
-								<dd><input type="checkbox" name="content-strategy" value="content-strategy" />Content Strategy</dd>
-								<dd><input type="checkbox" name="website" value="website" />Website</dd>
-								<dd><input type="checkbox" name="applications" value="applications" />Applications</dd>
-							  <dt>Creative</dt>
-								<dd><input type="checkbox" name="branding" value="branding" />Branding</dd>
-								<dd><input type="checkbox" name="interactive" value="interactive" />Interactive</dd>
-								<dd><input type="checkbox" name="traditional" value="traditional" />Traditional</dd>
-							  <dt>Public Relations</dt>
-								<dd><input type="checkbox" name="media-relations" value="media-relations" />Media Relations</dd>
-								<dd><input type="checkbox" name="strategic-communications" value="strategic-communications" />Strategic Communications</dd>
-								<dd><input type="checkbox" name="crisis-communications" value="crisis-communications" />Crisis Communications</dd>
-						  </dl>
->>>>>>> cbec90b8c8ac98b91835a617fe72e102f98adc00
-					</div>
 				
 				</div>
 		  </div>
@@ -1073,7 +1024,7 @@ function get_services_tab_content( $atts, $content = null ){
 			'page_id' => 'page_id',
 			'page_id_b' => 'page_id_b',
 		), $atts ) );
-		$args = array('post_type' => 'pages',
+		$args = array('post_type' => 'page',
 					  'post_status' => array('publish'),
 					  'page_id' => $page_id,
 				);
