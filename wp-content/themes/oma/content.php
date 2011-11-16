@@ -10,14 +10,16 @@
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	  <div class="left blog-left">
-	    <span class="user-photo"><?php echo userphoto_the_author_thumbnail(); ?></span>
-	    <ul class="blog-utility">
-	     <li class="comment"><a href="<?php the_permalink(); ?>">Comment</a></li>
-	     <li class="twitter"><a href="http://twitter.com/<?php echo get_the_author_meta('twitter'); ?>">Twitter</a></li>
-	     <li class="linkedin"><a href="http://linkedin.com/<?php echo get_the_author_meta('linkedin'); ?>">Linked In</a></li>
-	    </ul>
+	   <?php 
+	    echo userphoto_the_author_thumbnail(); 
+	  ?>
+	  <a href="http://twitter.com/<?php echo get_the_author_meta('twitter'); ?>">Twitter</a>
+	  <a href="http://linkedin.com/<?php echo get_the_author_meta('linkedin'); ?>">Linked In</a>
+	   
 	  </div>
 	  <div class="right blog-right">
+	   
+	  
 		<header class="entry-header">
 			<?php if ( is_sticky() ) : ?>
 				<hgroup>
@@ -51,4 +53,41 @@
 		</div><!-- .entry-content -->
 		<?php endif; ?>
 		</div>
-	</article>
+
+		<!-- <footer class="entry-meta">
+		      <?php $show_sep = false; ?>
+		      <?php if ( 'post' == get_post_type() ) : // Hide category and tag text for pages on Search ?>
+		      <?php
+		        /* translators: used between list items, there is a space after the comma */
+		        $categories_list = get_the_category_list( __( ', ', 'twentyeleven' ) );
+		        if ( $categories_list ):
+		      ?>
+		      <span class="cat-links">
+		        <?php printf( __( '<span class="%1$s">Posted in</span> %2$s', 'twentyeleven' ), 'entry-utility-prep entry-utility-prep-cat-links', $categories_list );
+		        $show_sep = true; ?>
+		      </span>
+		      <?php endif; // End if categories ?>
+		      <?php
+		        /* translators: used between list items, there is a space after the comma */
+		        $tags_list = get_the_tag_list( '', __( ', ', 'twentyeleven' ) );
+		        if ( $tags_list ):
+		        if ( $show_sep ) : ?>
+		      <span class="sep"> | </span>
+		        <?php endif; // End if $show_sep ?>
+		      <span class="tag-links">
+		        <?php printf( __( '<span class="%1$s">Tagged</span> %2$s', 'twentyeleven' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list );
+		        $show_sep = true; ?>
+		      </span>
+		      <?php endif; // End if $tags_list ?>
+		      <?php endif; // End if 'post' == get_post_type() ?>
+
+		      <?php if ( comments_open() ) : ?>
+		      <?php if ( $show_sep ) : ?>
+		      <span class="sep"> | </span>
+		      <?php endif; // End if $show_sep ?>
+		      <span class="comments-link"><?php comments_popup_link( '<span class="leave-reply">' . __( 'Leave a reply', 'twentyeleven' ) . '</span>', __( '<b>1</b> Reply', 'twentyeleven' ), __( '<b>%</b> Replies', 'twentyeleven' ) ); ?></span>
+		      <?php endif; // End if comments_open() ?>
+
+		      <?php edit_post_link( __( 'Edit', 'twentyeleven' ), '<span class="edit-link">', '</span>' ); ?>
+		    </footer><!-- #entry-meta -->
+		  </article><!-- #post-<?php the_ID(); ?> -->

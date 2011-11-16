@@ -9,25 +9,8 @@
 
 get_header(); ?>
 
-		<div id="content-blurb-wrapper" class="clear">
-      <div id="content-blurb-inner">
-        <article>
-    	    <header class="blurb-title">
-    		    <h1 class="entry-title">BLOG</h1>
-    	    </header><!-- .entry-header -->
-    	    <div class="blurb-body">
-            <p>Gain insight into the fast-paced world of Off Madison Ave, where a thoughtful approach, industry expertise and an unwavering dedication to our craft combine to make your brand more successful.</p>
-        </div>
-        </article>
-      </div>
-    </div>
-    <div id="content-page-wrapper" class="clear">
-    
-    <div id="blog-wrap">
-      <div id="blog-container">
 		<div id="primary">
 			<div id="content" role="main">
-			  <h2 class="blog-title">Recent Posts</h2>
 
 				<?php while ( have_posts() ) : the_post(); ?>
 
@@ -42,16 +25,8 @@ get_header(); ?>
 					<?php comments_template( '', true ); ?>
 
 				<?php endwhile; // end of the loop. ?>
-				
 
 			</div><!-- #content -->
 		</div><!-- #primary -->
-		<?php get_sidebar(); ?>
-		</div>
-		</div>
-	</div>
-		<div id="content-closure" class="clear">
-      <div id="content-closure-wrapper"></div>
-    </div>
 
 <?php get_footer(); ?>

@@ -1278,14 +1278,4 @@ function remove_add_processs() {
 	unset($submenu['edit.php?post_type=process'][10]); // Removes 'Add New'.
 }
 add_action('admin_menu', 'remove_add_processs');
-
-
-add_filter('body_class','browser_body_class');
-
-function browser_body_class($classes = '') {
-  
-	if(is_single() || is_category()) $classes[] = 'blog';
-	return $classes;
-}
-
 ?>
