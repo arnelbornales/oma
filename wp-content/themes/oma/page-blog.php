@@ -15,7 +15,7 @@
 get_header(); ?>
     
     <div id="content-blurb-wrapper" class="clear">
-			<div id="content-blurb-inner">index.php
+			<div id="content-blurb-inner">page-blog.php
 			<?php //the_post(); ?>
 			<?php get_template_part( 'content', 'blurb' ); ?>
 			</div>
@@ -34,7 +34,7 @@ get_header(); ?>
 				<?php twentyeleven_content_nav( 'nav-above' ); ?>
 				<?php query_posts( 'posts_per_page=5' ); ?>
 				<?php /* Start the Loop */ ?>
-				<?php while ( have_posts() ) : the_post(); ?>
+				<?php while ( have_posts() ) : //the_post(); ?>
 
 					<?php get_template_part( 'content', get_post_format() ); ?>
 

@@ -1,13 +1,13 @@
 <?php
-/* Template Name: Simple Page Template */
+/* Template Name: Simple Page */
 get_header(); ?>
 		<div id="primary">
 			<div id="content" role="main" class="wrapper-primary clear">
 				
 				<div id="content-blurb-wrapper" class="clear">
-					<div id="content-blurb-inner">
+					<div id="content-blurb-inner">page-simple-page.php
 						<?php //the_post(); ?>
-						<?php //get_template_part( 'content', 'blurb' ); ?>
+						<?php get_template_part( 'content', 'blurb' ); ?>
 					</div>
 				</div>
 				

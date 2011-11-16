@@ -17,8 +17,8 @@ get_header(); ?>
 				<header class="page-header">
 					<h1 class="page-title"><?php
 						printf( __( 'Category Archives: %s', 'twentyeleven' ), '<span>' . single_cat_title( '', false ) . '</span>' );
-					?></h1>
-
+					?>
+					</h1>
 					<?php
 						$category_description = category_description();
 						if ( ! empty( $category_description ) )
@@ -30,7 +30,6 @@ get_header(); ?>
 
 				<?php /* Start the Loop */ ?>
 				<?php while ( have_posts() ) : the_post(); ?>
-
 					<?php
 						/* Include the Post-Format-specific template for the content.
 						 * If you want to overload this in a child theme then include a file
@@ -38,7 +37,6 @@ get_header(); ?>
 						 */
 						get_template_part( 'content', get_post_format() );
 					?>
-
 				<?php endwhile; ?>
 
 				<?php twentyeleven_content_nav( 'nav-below' ); ?>
@@ -56,7 +54,7 @@ get_header(); ?>
 					</div><!-- .entry-content -->
 				</article><!-- #post-0 -->
 
-			<?php endif; ?>
+			<?php endif; ?>ca
 
 			</div><!-- #content -->
 		</section><!-- #primary -->

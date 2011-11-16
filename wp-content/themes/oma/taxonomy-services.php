@@ -10,9 +10,9 @@ get_header(); ?>
 		<div id="content" role="main" class="wrapper-primary clear">
 
 		<div id="content-blurb-wrapper" class="clear">
-			<div id="content-blurb-inner">archive.php
-			<?php //the_post(); ?>
-			<?php //get_template_part( 'content', 'blurb' ); ?>
+			<div id="content-blurb-inner">taxonomy-services.php
+			<?php the_post(); ?>
+			<?php get_template_part( 'content', 'blurb' ); ?>
 			</div>
 		</div>
 
