@@ -3138,7 +3138,8 @@ body .gform_wrapper form .gform_body ul li {
 		width: 261px;
 		height: 50px;
 }
-.page-services #content-blurb-inner header h1{
+.page-services #content-blurb-inner header h1, 
+.tax-services #content-blurb-inner header h1{
 		background: url('images/blurb-services.jpg') top no-repeat;
 		width: 261px;
 		height: 52px;

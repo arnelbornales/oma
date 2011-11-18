@@ -54,7 +54,7 @@ get_header(); ?>
 					</div><!-- .entry-content -->
 				</article><!-- #post-0 -->
 
-			<?php endif; ?>ca
+			<?php endif; ?>
 
 			</div><!-- #content -->
 		</section><!-- #primary -->
