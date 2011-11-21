@@ -685,12 +685,13 @@ add_action( 'widgets_init', 'oma_widgets_init', 1 );
 
 function oma_setup_theme() {
 	add_image_size( 'featured-projects', 288, 145, false );
+	add_image_size( 'related-services-projects', 165, 105, false );
 	add_theme_support( 'menus' );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'automatic-feed-links' );
-    add_image_size( 'featured-project-thumb', '288', '145', false );
-    remove_filter( 'excerpt_more', 'twentyeleven_auto_excerpt_more' );
-    remove_filter( 'get_the_excerpt', 'twentyeleven_custom_excerpt_more' );
+  add_image_size( 'featured-project-thumb', '288', '145', false );
+  remove_filter( 'excerpt_more', 'twentyeleven_auto_excerpt_more' );
+  remove_filter( 'get_the_excerpt', 'twentyeleven_custom_excerpt_more' );
 }
 add_action( 'after_setup_theme', 'oma_setup_theme' );
 
@@ -821,7 +822,7 @@ function add_projects_header(){ ?>
 					  
 						jQuery('#projects-carousel-<?php echo get_the_ID(); ?>').cycle({
 						              fx:      'scrollHorz',
-									  timeout:  0,
+									  			timeout:  0,
 						              pager:   '#nav-<?php echo get_the_ID(); ?>'
 						});
 						<?php
@@ -1160,8 +1161,8 @@ if(!empty($parents)):
 $parents = array_reverse($parents);
 
 echo '<ul id="breadcrumbs-services" class="breadcrumbs">';
-echo '<li class="breadcrumbs-items-first breadcrumbs-items"><a href="'.esc_url( home_url( '/' ) ).'">Home</a></li>';
-echo '<li class="breadcrumbs-items"><a href="'.esc_url( home_url( '/services' ) ).'">Services</a></li>';
+echo '<li class="breadcrumbs-items-first breadcrumbs-items"><a href="'.esc_url( home_url( '/' ) ).'">Home ></a></li>';
+echo '<li class="breadcrumbs-items"><a href="'.esc_url( home_url( '/services' ) ).'">Services ></a></li>';
 // For each parent, create a breadcrumb item
 foreach ($parents as $parent):
 	$item = get_term_by( 'id', $parent, get_query_var( 'taxonomy' ));
@@ -1171,7 +1172,7 @@ endforeach;
 endif;
 
 // Display the current term in the breadcrumb
-echo '<li class="breadcrumbs-items-last breadcrumbs-items">'.$term->name.'</li>';
+echo '<li class="breadcrumbs-items-last breadcrumbs-items">>'.$term->name.'</li>';
 echo '</ul>';
 }
 

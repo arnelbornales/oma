@@ -10,7 +10,7 @@ get_header(); ?>
 		<div id="content" role="main" class="wrapper-primary clear">
 
 		<div id="content-blurb-wrapper" class="clear">
-			<div id="content-blurb-inner">page.php
+			<div id="content-blurb-inner">
 			<?php //the_post(); ?>
 			<?php //get_template_part( 'content', 'blurb' ); ?>
 			</div>

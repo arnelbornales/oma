@@ -3122,6 +3122,7 @@ body .gform_wrapper form .gform_body ul li {
 		-moz-box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
 		-webkit-box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
 		box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
+		min-height: 900px;
 }
 .content-page-content .page-title{
 		font: 26px TradeGothic;
@@ -3205,7 +3206,7 @@ body .gform_wrapper form .gform_body ul li {
 #content-page-inner{
 		width: 960px;
 		margin: 0 auto;
-		padding: 10px 0;
+		/*padding: 10px 0;*/
 }
 
 #content-closure{
@@ -4140,4 +4141,58 @@ img[class*="wp-image-"],
 	padding: 20px;
 	margin-bottom: 20px;
 	font-style: italic;
+}
+#supplementary {
+	border: 0;
+}
+#related-services-left{
+	width: 175px;
+}
+#related-services-right{
+	width: 690px;
+}
+.related-services-feat-images img{
+	border: 5px solid #d2d2d2;
+}
+ul#breadcrumbs-services{
+	list-style: none;
+	background: url("images/border-dotted.jpg") bottom repeat-x;
+	height: 30px;
+	margin: 0;
+	margin-bottom: 20px;
+}
+ul#breadcrumbs-services li{
+	float: left;
+	padding-right: 5px;
+}
+
+ul#breadcrumbs-services li a,.breadcrumbs-items-last{
+	font-family: Arial;
+	font-style: italic;
+	color: #517a96;
+}
+.breadcrumbs-items-last{
+	color: #C5CB50;
+}
+.content-page-content-services{
+	padding-top: 30px;
+	margin-bottom: 20px;
+}
+#related-services-right .page-title{
+	margin-bottom: 20px;color: #517a96;
+}
+#related-services-left .project-featured-title{
+	border-bottom: 2px solid #c5cb50;
+	font-weight: bold;
+	font-size: 1em;
+	margin-bottom: 10px;
+  padding-bottom: 0;
+}
+
+#related-services-left p{
+	margin: 0;
+	padding: 0;
+}
+.proj-related-services{
+	margin-bottom: 15px;
 }
