@@ -32,7 +32,7 @@ get_header(); ?>
 			  
 
 				<?php twentyeleven_content_nav( 'nav-above' ); ?>
-				<?php query_posts( 'posts_per_page=5' ); ?>
+				<?php query_posts( 'posts_per_page=100' ); ?>
 				<?php /* Start the Loop */ ?>
 				<?php while ( have_posts() ) : the_post(); ?>
 
