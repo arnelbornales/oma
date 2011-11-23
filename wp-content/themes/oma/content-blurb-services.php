@@ -9,7 +9,7 @@
 ?>
 
 <article id="post-Services" <?php post_class(); ?>>
-	<header class="blurb-title blurb-title-blurbservices">
+	<header class="blurb-title blurb-title-blurb-services">
 		<h1 class="entry-title">Services</h1>
 	</header>
 

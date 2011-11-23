@@ -6,7 +6,7 @@
  * @subpackage Twenty_Eleven
  * @since Twenty Eleven 1.0
  */
-print '<pre>';
+//print '<pre>';
 //$myterms = hey_top_parents($term);
 //print_r($myterms); 
 //print_r($wp_query->query_vars); 
@@ -26,9 +26,11 @@ if ( $terms && ! is_wp_error( $terms ) ) {
     }
     echo $tree;
 } 
-print '</pre>';	
+//print '</pre>';	
+
+
 get_header(); ?>
-<div id="content" role="main" class="wrapper-primary clear">
+<div id="main" role="main" class="wrapper-primary clear">
 
 		<div id="content-blurb-wrapper" class="clear">
 			<div id="content-blurb-inner">

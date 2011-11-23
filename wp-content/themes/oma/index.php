@@ -17,7 +17,7 @@ get_header(); ?>
     <div id="content-blurb-wrapper" class="clear">
 			<div id="content-blurb-inner">index.php
 			<?php //the_post(); ?>
-			<?php get_template_part( 'content', 'blurb' ); ?>
+			<?php get_template_part( 'content', 'blurb-blog' ); ?>
 			</div>
 		</div>
 		
