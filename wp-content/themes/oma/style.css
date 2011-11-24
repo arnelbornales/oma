@@ -3912,10 +3912,10 @@ body #gform_1 ul li {
 }
 
 .blog #content article {
-  background: #f6f6f6;
+  
   border-bottom: 1px dotted #bac12f;
   display: inline-block;
-  padding: 16px 45px 16px 8px;
+  padding: 16px 0 16px 8px;
 }
 
 .blog #content article.odd {
@@ -4010,7 +4010,7 @@ body #gform_1 ul li {
 }
 
 .blog-right {
-  width: 530px;
+  width: 85%;
 }
 
 .blog-utility {

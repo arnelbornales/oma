@@ -15,7 +15,7 @@
 get_header(); ?>
     
     <div id="content-blurb-wrapper" class="clear">
-			<div id="content-blurb-inner">index.php
+			<div id="content-blurb-inner">
 			<?php //the_post(); ?>
 			<?php get_template_part( 'content', 'blurb-blog' ); ?>
 			</div>
@@ -27,21 +27,16 @@ get_header(); ?>
       <div id="blog-container">
 		<div id="primary">
 			<div id="content" role="main">
-			  
+			<h2 class="blog-title">Recent Posts</h2>  
 			<?php if ( have_posts() ) : ?>
-			  
-
 				<?php twentyeleven_content_nav( 'nav-above' ); ?>
-				<?php query_posts( 'posts_per_page=100' ); ?>
+				<?php query_posts( 'posts_per_page=4' ); ?>
 				<?php /* Start the Loop */ ?>
 				<?php while ( have_posts() ) : the_post(); ?>
-
-					<?php get_template_part( 'content', get_post_format() ); ?>
-
+							<?php get_template_part( 'content', 'blog' ); ?>
 				<?php endwhile; ?>
-
+					
 				<?php twentyeleven_content_nav( 'nav-below' ); ?>
-
 			<?php else : ?>
 
 				<article id="post-0" class="post no-results not-found">
