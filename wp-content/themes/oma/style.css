@@ -3915,7 +3915,8 @@ body #gform_1 ul li {
   
   border-bottom: 1px dotted #bac12f;
   display: inline-block;
-  padding: 16px 0 16px 8px;
+  padding: 30px 10px 16px 5px;
+  background: #F6F6F6;
 }
 
 .blog #content article.odd {
@@ -3926,7 +3927,10 @@ body #gform_1 ul li {
   margin: 0;
   width: 665px;
 }
-
+.single #blog-container #primary{
+  margin: 0;
+  width: 900px;
+}
 .blog #content {
   width: auto;
 }
@@ -4012,7 +4016,9 @@ body #gform_1 ul li {
 .blog-right {
   width: 85%;
 }
-
+.single .blog-right {
+    width: 85%;
+}
 .blog-utility {
   display: inline-block;
   list-style: none; 
@@ -4195,4 +4201,42 @@ ul#breadcrumbs-services li a,.breadcrumbs-items-last{
 }
 .proj-related-services{
 	margin-bottom: 15px;
+}
+.entry-meta a {
+  color: #BAC12F;
+  font-weight: normal;
+}
+.pagination {
+	clear:both;
+	font-size:11px;
+	line-height:13px;
+	padding: 10px 0 10px 15px;
+	position:relative;
+}
+
+.pagination span, .pagination a {
+	background-attachment: scroll;
+	background-repeat: repeat-x;
+	color: #517A96;
+	display:block;
+	float:left;
+	margin: 2px 2px 2px 0;
+	padding:6px 9px 5px 9px;
+	text-decoration:none;
+	width:auto;
+	font-weight: bold;
+}
+
+.pagination a:hover{
+	color:#BAC12F;
+	font-weight: bold;
+}
+
+.pagination .current{
+	color:#BAC12F;
+	font-weight: bold;
+	padding:6px 9px 5px 9px;
+}
+.widget_categories{
+	margin-top: 2.2em;
 }

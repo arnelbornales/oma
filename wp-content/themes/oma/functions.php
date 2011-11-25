@@ -718,6 +718,19 @@ add_filter( 'get_the_excerpt', 'oma_custom_excerpt_more' );
  * END Returns a " more > " link for excerpts
 */
 
+function oma_posted_on() {
+	printf( __( '<span class="sep">Written on </span><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a><span class="by-author"> <span class="sep"> Posted by </span> <span class="author vcard"><a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span></span>', 'twentyeleven' ),
+		esc_url( get_permalink() ),
+		esc_attr( get_the_time() ),
+		esc_attr( get_the_date( 'c' ) ),
+		esc_html( get_the_date() ),
+		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+		sprintf( esc_attr__( 'View all posts by %s', 'twentyeleven' ), get_the_author() ),
+		esc_html( get_the_author() )
+	);
+}
+
+
 function oma_page_excerpts(){
     add_post_type_support('page', 'excerpt');
 }
@@ -754,7 +767,6 @@ function get_homepage_featured_project( $atts, $content = NULL) {
 	$featProjects = new WP_Query( $args );
 	
 	if ( $featProjects->have_posts() ) :
-		
 		$i = 0;
 		while ( $featProjects->have_posts() ) : $featProjects->the_post(); 
 		// get_the_ID() is the POST ID 
@@ -1268,4 +1280,39 @@ function browser_body_class($classes = '') {
 	return $classes;
 }
 
+
+
+function blog_pagination($pages = '', $range = 14) {   /* handle pagination for post pages*/
+    $showitems = ($range * 2)+1;  
+     
+    global $paged;
+    if(empty($paged)){ 
+    	$paged = 1;
+    }
+     
+    if($pages == ''){
+    	global $wp_query;
+      	$pages = $wp_query->max_num_pages;
+        if(!$pages){
+        	$pages = 1;
+        }
+    }  
+     
+    if(1 != $pages){
+        echo "<div class=\"pagination\">";//<span>Page ".$paged." of ".$pages."</span>";
+        //if($paged > 2 && $paged > $range+1 && $showitems < $pages) echo "<a href='".get_pagenum_link(1)."'>&laquo; First</a>";
+        //if($paged > 1 && $showitems < $pages) echo "<a href='".get_pagenum_link($paged - 1)."'>&lsaquo; Previous</a>";
+ 				if ($paged < $pages && $showitems < $pages) echo "<a href=\"".get_pagenum_link($paged + 1)."\">&laquo; NEWER</a>";
+        
+        
+        for ($i=1; $i <= $pages; $i++){
+        	if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems )){
+                 echo ($paged == $i)? "<span class=\"current\">".$i."</span>":"<a href='".get_pagenum_link($i)."' class=\"inactive\">".$i."</a>";
+          }
+        }
+ 
+        if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) echo "<a href='".get_pagenum_link($paged - 1)."'>OLDER &raquo;</a>";
+        echo "</div>\n";
+    }
+}
 ?>
