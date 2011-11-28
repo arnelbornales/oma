@@ -2962,7 +2962,9 @@ body .gform_wrapper form .gform_body ul li {
 		height: 10px;
 		margin: 0;
 }
-
+#access li.menu-item-106:hover > a {
+		background: none;
+}
 
 
 .sub-menu{
@@ -4058,13 +4060,18 @@ body #gform_1 ul li {
 }
 
 #searchform #s {
-  background: url('images/search-icon.png') no-repeat 155px center;
+  background: url('images/search-icon.png') no-repeat 175px center;
   font-size: 13px;
   font-style: italic;
   height: 15px;
   line-height: 13px;
   padding: 5px 0 5px 8px;
-  width: 170px;
+  width: 190px;
+}
+
+#secondary #searchform #s {
+	width: 170px;
+	background-position: 155px center;
 }
 
 h2.inner-tab-title{
