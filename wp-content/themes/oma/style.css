@@ -3091,6 +3091,7 @@ body .gform_wrapper form .gform_body ul li {
 #main #content{
 		margin: 0;
 		padding: 0;
+
 }
 #content-blurb-wrapper{
 		background: #c5cb50 url('images/body-bg-top.jpg') top no-repeat;
@@ -3125,6 +3126,7 @@ body .gform_wrapper form .gform_body ul li {
 		-webkit-box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
 		box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
 		min-height: 900px;
+		margin-bottom: 20px;
 }
 .content-page-content .page-title{
 		font: 26px TradeGothic;
@@ -3873,18 +3875,23 @@ body #gform_1 ul li {
 */
 
 
-#blog-wrap {
+#blog-wrapper{
   background: #fff;
   -webkit-box-shadow: 0 0 8px 1px rgba(104,104,104,.5);
-     -moz-box-shadow: 0 0 8px 1px rgba(104,104,104,.5);
-          box-shadow: 0 0 8px 1px rgba(104,104,104,.5); /* inset offset-x offset-y blur spread color */
-  
-  margin: -10px auto 0 auto;
+  -moz-box-shadow: 0 0 8px 1px rgba(104,104,104,.5);
+  box-shadow: 0 0 8px 1px rgba(104,104,104,.5); /* inset offset-x offset-y blur spread color */
+  margin: -10px auto 20px auto;
   padding: 30px;
   width: 880px;
 }
+#home-wrapper,#page-wrapper{
+		width: 960px;
+		clear: both;
+		margin: auto;
+		background: none;
+}
 
-#blog-container {
+#blog-container,#page-container {
   display: inline-block;
   width: 100%;
 }
@@ -4127,15 +4134,21 @@ p,td.cell-two p {
 .marketing-right-col td{
 		vertical-align: top;
 }
-td.cell-first{
+.marketing-right-col td.cell-first{
 		padding-right: 10px;
+		width: 56px;
 }
-td.cell-first img{
+.marketing-right-col td.cell-first img{
 		border: 0;
 		padding-top: 0;
 }
-td.cell-two{
+.marketing-right-col td.cell-two{
+		width: 375px;
+		/*
+		
 		font: 1em "Arial" normal;
+		
+		*/
 }
 .services-right-titles{
 	color: #517a96;

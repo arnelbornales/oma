@@ -22,7 +22,7 @@ get_header(); ?>
 		</div>
 		
 		<div id="content-page-wrapper" class="clear">
-    	<div id="blog-wrap">
+    	<div id="blog-wrapper">
       	<div id="blog-container">
 					<div id="primary">
 						<div id="content" role="main">

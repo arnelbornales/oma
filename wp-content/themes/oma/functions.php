@@ -1169,23 +1169,27 @@ $parents[] = $parent;
 $new_parent = get_term_by( 'id', $parent, get_query_var( 'taxonomy' ));
 $parent = $new_parent->parent;
 endwhile;
+
+$breadcrumb = '';
+$breadcrumb .= '<ul id="breadcrumbs-services" class="breadcrumbs">';
+$breadcrumb .= '<li class="breadcrumbs-items-first breadcrumbs-items"><a href="'.esc_url( home_url( '/' ) ).'">Home ></a></li>';
+$breadcrumb .= '<li class="breadcrumbs-items"><a href="'.esc_url( home_url( '/services' ) ).'">Services ></a></li>';
+
+
 if(!empty($parents)):
 $parents = array_reverse($parents);
-
-echo '<ul id="breadcrumbs-services" class="breadcrumbs">';
-echo '<li class="breadcrumbs-items-first breadcrumbs-items"><a href="'.esc_url( home_url( '/' ) ).'">Home ></a></li>';
-echo '<li class="breadcrumbs-items"><a href="'.esc_url( home_url( '/services' ) ).'">Services ></a></li>';
 // For each parent, create a breadcrumb item
 foreach ($parents as $parent):
 	$item = get_term_by( 'id', $parent, get_query_var( 'taxonomy' ));
 	$url = get_bloginfo('url').'/'.$item->taxonomy.'/'.$item->slug;
-	echo '<li class="breadcrumbs-items"><a href="'.$url.'">'.$item->name.'</a></li>';
+	$breadcrumb .= '<li class="breadcrumbs-items"><a href="'.$url.'">'.$item->name.'</a></li>';
 endforeach;
 endif;
 
 // Display the current term in the breadcrumb
-echo '<li class="breadcrumbs-items-last breadcrumbs-items">>'.$term->name.'</li>';
-echo '</ul>';
+$breadcrumb .= '<li class="breadcrumbs-items-last breadcrumbs-items">> '.$term->name.'</li>';
+$breadcrumb .= '</ul>';
+return $breadcrumb;
 }
 
 function input_text_clear(){ ?>
