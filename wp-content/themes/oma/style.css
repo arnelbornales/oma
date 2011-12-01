@@ -4260,3 +4260,6 @@ ul#breadcrumbs-services li a,.breadcrumbs-items-last{
 .widget_categories{
 	margin-top: 2.2em;
 }
+.hide{
+	display: none;
+}

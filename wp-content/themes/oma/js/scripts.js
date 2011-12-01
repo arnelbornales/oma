@@ -1,6 +1,6 @@
 (function ($) {
   $(document).ready(function() {  
-    
+    alert('hello!');
     // Social Media Hover Intent in Header
     function makeTall() {
       $('#social-icons').animate({width: 132}, 'fast');
@@ -21,14 +21,6 @@
     // Alternate Colors on Blog Feed
     
     $('.blog article:odd').addClass('odd');
-    
-    // Project Filter Modal
-    
-    $('#project-all-btn a').click(function() {      
-      $('.project-modal').toggle('fast', function() {
-        });
-        return false;
-    });
     
     var projectFilter = $('#projects-filter dd input');
     

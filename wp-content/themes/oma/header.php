@@ -65,7 +65,6 @@
 	wp_head();
 ?>
 <script src="<?php bloginfo( 'template_url' ); ?>/js/jquery.hoverIntent.minified.js" type="text/javascript"></script>
-<script src="<?php bloginfo( 'template_url' ); ?>/js/scripts.js" type="text/javascript"></script>
 </head>
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed">

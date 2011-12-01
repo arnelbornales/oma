@@ -743,11 +743,79 @@ function oma_page_quicktabs() { ?>
 <script type="text/javascript" src="http://jqueryui.com/ui/jquery.ui.tabs.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($){
-		$("#tabs").tabs();
+		jQuery("#tabs").tabs();
 	});
-</script><?php
+</script>
+<?php
 }     
 add_action('wp_head', 'oma_page_quicktabs');
+
+
+function oma_filter_blogs(){?>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+		
+		// Project Filter Modal
+    jQuery('#project-all-btn a').click(function() {      
+    	jQuery('.project-modal').toggle('fast', function() { });
+        return false;
+    });
+    
+    jQuery("input:checkbox").click(function(){
+        if (jQuery("input:checked").size() > 0) {      
+          jQuery("input:checkbox:not(:checked)").each(function() {
+            html_class = $(this).attr("name");
+            jQuery("#all-projects > .item[class*=" + html_class + "]").addClass("hide");
+          });
+        
+          jQuery("input:checkbox:checked").each(function() {
+            html_class = $(this).attr("name");
+            jQuery("#all-projects > .item[class*=" + html_class + "]").removeClass("hide");
+          });
+          
+        }
+        else {
+          jQuery("#all-projects .item").each(function(){
+            jQuery(this).removeClass("hide");
+            //jQuery(this).children("a").attr('rel','shadowbox[portfolio]');
+          });
+        }
+    })
+
+});
+</script>
+
+<?php
+}
+add_action('wp_head', 'oma_filter_blogs');
+
+
+function oma_social_icons(){?>
+<script type="text/javascript">
+  $(document).ready(function() {  
+    // Social Media Hover Intent in Header
+    function makeTall() {
+      $('#social-icons').animate({width: 132}, 'fast');
+    }
+    
+    function makeShort() {
+      $('#social-icons').animate({width: 72}, 'fast');
+    }
+    
+    var config = {    
+         over: makeTall,
+         timeout: 200,
+         out: makeShort
+    };
+    
+    $("#social-icons").hoverIntent( config );
+    // Alternate Colors on Blog Feed
+    $('.blog article:odd').addClass('odd');
+  });	
+</script><?php
+}
+add_action('wp_head', 'oma_social_icons');
+
 
 // add shortcode to display three featured projects in homepage
 function get_homepage_featured_project( $atts, $content = NULL) {
@@ -853,38 +921,35 @@ add_action('wp_head', 'add_projects_header');
 function get_projects_tab_content( $atts, $content = null ){ 
 	//add_action('wp_head', 'add_projects_header')
 	ob_start(); ?>
-	<div class="project-nav-wrapper">
+		<div class="project-nav-wrapper">
 		<div class="left">
 			<div id="project-all-btn">
 				<a href="#"><img src="/oma/wp-content/themes/oma/images/see_all_clients_project.jpg" /></a>
 		  		<div class="project-modal">
 					<ul id="all-projects">
 						<?php  
-
-						  $args = array( 'post_type' => 'projects');
+							$args = array( 'post_type' => 'projects');
 						  $loop = new WP_Query( $args );
-
-						  while ( $loop->have_posts() ) : $loop->the_post();
-						  ?>
-
-							<li class="<?php 
-							  $terms = get_the_terms(get_the_ID(), "services");
-							  $count = count($terms);
-							  if ( $count > 0 ){
-								  foreach ( $terms as $term ) {
-									echo $term->slug;
-									echo " ";
-								  }
-							  }
-							?>"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyeleven' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></li>
+							while ( $loop->have_posts() ) : $loop->the_post(); ?>
+								<li class="item <?php 
+							  	$terms = get_the_terms(get_the_ID(), "services");
+							  	$count = count($terms);
+							  	if ( $count > 0 ){
+								  	foreach ( $terms as $term ) {
+											echo $term->slug;
+											echo " ";
+								  	}
+							  	}?>">
+							  	
+							  	<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'twentyeleven' ), the_title_attribute( 'echo=0' ) ); ?>" rel="" class><?php the_title(); ?></a>
+							  	
+							  </li>
 						  <?php                
-						  endwhile;
-						  ?>
+						  endwhile; ?>
 					</ul>
 						<div id="projects-all-right">
 						  <h3>View by Service</h3>
 						  <?php
-
 							  $taxonomyName = "services";
 							  //This gets top layer terms only.  This is done by setting parent to 0.  
 							  $parent_terms = get_terms($taxonomyName, array('parent' => 0, 'orderby' => 'slug', 'hide_empty' => false));   
@@ -892,37 +957,15 @@ function get_projects_tab_content( $atts, $content = null ){
 							  foreach ($parent_terms as $pterm) {
 								  //Get the Child terms
 								  echo '<dt>' . $pterm->name . '</dt>';
-
 								  $terms = get_terms($taxonomyName, array('parent' => $pterm->term_id, 'orderby' => 'slug', 'hide_empty' => false));
 								  foreach ($terms as $term) {
 									  echo '<dd><input type="checkbox" name="' . $term->slug . '" value="' . $term->slug . '" />' . $term->name . '</a></dd>';  
 								  }
 							  }
 							  echo '</dl>';
-						?>
-						<!-- <dl id="projects-filter">
-  					                 <dt>Marketing &amp; Advertising</dt>
-  					                  <dd><input type="checkbox" name="lifecycle-marketing" value="lifecycle-marketing" />Lifecycle Marketing</dd>
-  					                  <dd><input type="checkbox" name="social-media" value="social-media" />Social Media</dd>
-  					                  <dd><input type="checkbox" name="media-buying-planning" value="media-buying-planning" />Media Buying/Planning</dd>
-  					                  <dd><input type="checkbox" name="ppc" value="ppc" />PPC</dd>
-  					                  <dd><input type="checkbox" name="seo" value="seo" />SEO</dd>
-  					                  <dt>Web &amp; App Development</dt>
-  					                  <dd><input type="checkbox" name="user-experience" value="user-experience" />User Experience</dd>
-  					                  <dd><input type="checkbox" name="content-strategy" value="content-strategy" />Content Strategy</dd>
-  					                  <dd><input type="checkbox" name="website" value="website" />Website</dd>
-  					                  <dd><input type="checkbox" name="applications" value="applications" />Applications</dd>
-  					                  <dt>Creative</dt>
-  					                  <dd><input type="checkbox" name="branding" value="branding" />Branding</dd>
-  					                  <dd><input type="checkbox" name="interactive" value="interactive" />Interactive</dd>
-  					                  <dd><input type="checkbox" name="traditional" value="traditional" />Traditional</dd>
-  					                  <dt>Public Relations</dt>
-  					                  <dd><input type="checkbox" name="media-relations" value="media-relations" />Media Relations</dd>
-  					                  <dd><input type="checkbox" name="strategic-communications" value="strategic-communications" />Strategic Communications</dd>
-  					                  <dd><input type="checkbox" name="crisis-communications" value="crisis-communications" />Crisis Communications</dd>
-  					               </dl> -->
+							  
+							?>
 						</div>
-				
 				</div>
 		  </div>
 		  </div>
