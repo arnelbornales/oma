@@ -15,7 +15,7 @@ get_header(); ?>
 				<div id="primary">
 					<div id="content" role="main">
 						<?php the_content(); ?>
-				</div><!-- #content -->
+					</div><!-- #content -->
 				</div><!-- #primary -->
 			</div>				
 		</div>
