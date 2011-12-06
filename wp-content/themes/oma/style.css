@@ -3769,9 +3769,11 @@ body #gform_1 ul li {
 .projects img { -moz-border-radius: 10px; -webkit-border-radius: 10px; }
 /** END - Our Work Page - Process Tab */
 
+/*
 .inner-tab-wrapper{
 	min-height: 600px;
 }
+*/
 
 .inner-tab-sub-headline{
 		color: #333333;

@@ -1082,7 +1082,7 @@ function get_tab_content( $atts, $content = null ){
 		$query_left = new WP_Query( $args );
 		ob_start();
 		?>
-	    <div class="inner-tab-wrapper clear-after clear"><?php
+	  <div class="inner-tab-wrapper clear-after clear"><?php
 		if ( $query_left->have_posts() ) :?>
 			  <?php	
 				  
@@ -1098,7 +1098,6 @@ function get_tab_content( $atts, $content = null ){
 							<?php echo the_content(); ?>
 					</div><?php
 					endwhile; 
-					
 					wp_reset_postdata();
 					/**
 					 $args = array('post_type' => 'services',
@@ -1106,14 +1105,16 @@ function get_tab_content( $atts, $content = null ){
 									  'page_id' => $page_id_b,
 									  );
 					$query_right = new WP_Query( $args );
-					*/	
-					$query_right = new WP_Query( 'page_id='.$page_id_b.'' ); 
-					while ( $query_right->have_posts() ) : $query_right->the_post(); ?>
-					<div class="inner-tab-content-right right" style="">									
-							<?php echo the_content(); ?>
-					</div><?php
-					endwhile; 
-					wp_reset_postdata();
+					*/
+					if(!empty($page_id_b)):	
+						$query_right = new WP_Query( 'page_id='.$page_id_b.'' ); 
+						while ( $query_right->have_posts() ) : $query_right->the_post(); ?>
+						<div class="inner-tab-content-right right" style="">									
+								<?php echo the_content(); ?>
+						</div><?php
+						endwhile;
+					wp_reset_postdata(); 
+					endif;
 		endif;		
 		?>
 		</div>
@@ -1123,6 +1124,37 @@ function get_tab_content( $atts, $content = null ){
 		return $content;
 }
 add_shortcode( 'get_tab_content', 'get_tab_content' );
+
+function get_press_room_content( $atts, $content = null ){
+		extract( shortcode_atts( array(
+			'page_id' => 'page_id',
+		), $atts ) );
+		$args = array('post_type' => 'page',
+					  'post_status' => array('publish'),
+					  'page_id' => $page_id,
+				);
+		$query_left = new WP_Query( $args );
+		ob_start(); ?>
+	  <div class="inner-tab-wrapper clear-after clear"><?php
+		if ( $query_left->have_posts() ) :?>
+			  <?php						
+					while ( $query_left->have_posts() ) : $query_left->the_post(); ?>
+					<div class="inner-tab-content-left left">  	
+				    	<h2 class="inner-tab-title"><a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo get_post_meta(get_the_ID(), 'field_inner_title_quicktab' , true); ?></a></h2>
+							<span class="inner-tab-sub-headline"><?php echo get_post_meta(get_the_ID(), 'field_inner_sub_title_quicktab' , true); ?></span>
+							<?php echo the_content(); ?>
+					</div><?php
+					endwhile; 
+					wp_reset_postdata();
+		endif;?>
+		</div>
+		<?php
+		$content = ob_get_contents();
+		ob_end_clean();
+		return $content;
+}
+add_shortcode( 'get_press_room_content', 'get_press_room_content' );
+
 
 //http://codex.wordpress.org/Template_Tags/get_posts
 function get_latest_post( $atts, $content = NULL){
