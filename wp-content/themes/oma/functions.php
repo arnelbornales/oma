@@ -1146,7 +1146,30 @@ function get_press_room_content( $atts, $content = null ){
 					</div><?php
 					endwhile; 
 					wp_reset_postdata();
-		endif;?>
+		endif;
+		
+		$args = array(
+			'post_type' => 'agency_news',
+			'post_status' => array('publish'),
+			'order_by' => 'modified',
+		);
+		$query_right = new WP_Query( $args ); 
+		
+		while ( $query_right->have_posts() ) : $query_right->the_post(); ?>
+		<div class="inner-tab-content-right right" style="">
+				<h3><a href="<?php the_permalink(); ?>" class="latest-post-title"><?php the_title(); ?></a><br /></h3>
+				<?php echo get_post_meta(get_the_ID(), 'field_story_date' , true); ?>	
+				<?php echo the_excerpt(); ?>
+				<?php $pdf =  get_post_meta(get_the_ID(), 'field_pdf_upload' , true); ?>
+				<?php	foreach($pdf as $key){ 
+								echo '<a href="'.$key['image'].'">PDF</a>'; 
+							}
+				?>
+		</div><?php
+		endwhile;
+		wp_reset_postdata(); 
+	
+		?>
 		</div>
 		<?php
 		$content = ob_get_contents();
