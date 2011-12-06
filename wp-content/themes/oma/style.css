@@ -341,9 +341,10 @@ body {
 /* =Global
 ----------------------------------------------- */
 
-body, input, textarea {
+body, input, textarea,p {
 	color: #373737;
-	font: 15px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	/*font: 15px "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+	font: 15px Arial, "Helvetica Neue", Helvetica, sans-serif;
 	font-weight: 300;
 	line-height: 1.625;
 }
@@ -3161,7 +3162,7 @@ body .gform_wrapper form .gform_body ul li {
   height: 52px;
 }
 
-#content-blurb-inner .blurb-body{
+#content-blurb-inner .blurb-body p{
 		/*float: right;*/
 		color: #FFFFFF;
     display: block;
@@ -3178,7 +3179,7 @@ body .gform_wrapper form .gform_body ul li {
   margin: 0;
 }
 
-#content-blurb-inner .blurb-body-home{
+#content-blurb-inner .blurb-body-home p{
 		color: #333;
 		font-size: 14px;
 		font-family: Arial;
@@ -3527,8 +3528,9 @@ body #gform_1 ul li {
 	float: left;
 	width: 100px;
 	height: auto;
-	width: 160px;
-	padding: 0 10px 0 0;
+	width: 165px;
+	padding: 0;
+	margin-right: 5px;
 }
 #second .sub-menu .sub-menu{
 	float: none;
@@ -4132,19 +4134,19 @@ h2.inner-tab-title a{
 	line-height: 25px; 
 	margin-bottom: 5px;
 } 
-.marketing-wrapper-left{
+.inner-tab-content-left{
 	width: 400px;
 }
-.marketing-wrapper{
+.inner-tab-wrapper{
 	position: relative;
+	overflow-y: auto;
 }
-.marketing-wrapper-right{
+.inner-tab-content-right{
 	width: 440px;
 }
 p,td.cell-two p {
     line-height: 1.4em;
-    margin-bottom: 1em;
-    font-size: 1em;
+    margin-bottom: 0.5em;
 }
 .marketing-right-col td{
 		vertical-align: top;
@@ -4152,6 +4154,7 @@ p,td.cell-two p {
 .marketing-right-col td.cell-first{
 		padding-right: 10px;
 		width: 56px;
+		padding-top: 10px;
 }
 .marketing-right-col td.cell-first img{
 		border: 0;
@@ -4159,11 +4162,16 @@ p,td.cell-two p {
 }
 .marketing-right-col td.cell-two{
 		width: 375px;
+		padding-top: 10px;
 		/*
 		
 		font: 1em "Arial" normal;
 		
 		*/
+}
+.marketing-right-col td.cell-two a{
+		color: #517a96;
+		font-weight: bold;
 }
 .services-right-titles{
 	color: #517a96;
@@ -4277,4 +4285,14 @@ ul#breadcrumbs-services li a,.breadcrumbs-items-last{
 }
 .hide{
 	display: none;
+}
+aside#nav_menu-5{
+	width: 12%;
+}
+.marketing-right-col .cell-two{
+	background: url("images/border-dotted.jpg") bottom repeat-x; 
+	margin-bottom: 10px;
+}
+table.marketing-right-col tr {
+	padding: 20px;
 }

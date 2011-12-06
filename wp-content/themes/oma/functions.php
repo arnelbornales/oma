@@ -983,7 +983,6 @@ function get_projects_tab_content( $atts, $content = null ){
 			'order_by' => 'modified',
 		  );
 		  $featProjects = new WP_Query( $args );
-				$i = 1;
 				if ( $featProjects->have_posts() ) :
 					while ( $featProjects->have_posts() ) : $featProjects->the_post(); 
 					// get_the_ID() is the POST ID  ?>		
@@ -991,7 +990,7 @@ function get_projects_tab_content( $atts, $content = null ){
 						<div class="projects-wrapper-left left">
 							<?php $carousel_images = get_post_meta(get_the_ID(), 'field_images_carousel', true); ?>
 							<h2 class="inner-tab-title">
-							<a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo the_title(); ?><?php echo $i; ?></a>
+							<a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo the_title(); ?></a>
 							</h2>
 							<span class="inner-tab-sub-headline"><?php echo get_post_meta(get_the_ID(), 'field_sub_headline' , true); ?></span>					
 							<?php echo the_content(); ?>
@@ -1021,7 +1020,6 @@ function get_projects_tab_content( $atts, $content = null ){
 							</div>
 						</div>
 				  <?php
-				  $i++;
 				  endwhile;
 			  endif;
 			  wp_reset_postdata();?>
@@ -1072,7 +1070,7 @@ add_shortcode( 'get_process_tab_content', 'get_process_tab_content' );
 
 
 
-function get_services_tab_content( $atts, $content = null ){
+function get_tab_content( $atts, $content = null ){
 		extract( shortcode_atts( array(
 			'page_id' => 'page_id',
 			'page_id_b' => 'page_id_b',
@@ -1086,7 +1084,7 @@ function get_services_tab_content( $atts, $content = null ){
 		?>
 	    <div class="inner-tab-wrapper clear-after clear"><?php
 		if ( $query_left->have_posts() ) :?>
-			  <div class="marketing-wrapper"><?php	
+			  <?php	
 				  
 					//$terms = get_term_by('id', 4, 'services');
 					//print '<h1>';
@@ -1094,7 +1092,7 @@ function get_services_tab_content( $atts, $content = null ){
 					//print '</h1>';
 					
 					while ( $query_left->have_posts() ) : $query_left->the_post(); ?>
-					<div class="marketing-wrapper-left left">  	
+					<div class="inner-tab-content-left left">  	
 				    	<h2 class="inner-tab-title"><a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo get_post_meta(get_the_ID(), 'field_inner_title_quicktab' , true); ?></a></h2>
 							<span class="inner-tab-sub-headline"><?php echo get_post_meta(get_the_ID(), 'field_inner_sub_title_quicktab' , true); ?></span>
 							<?php echo the_content(); ?>
@@ -1111,13 +1109,11 @@ function get_services_tab_content( $atts, $content = null ){
 					*/	
 					$query_right = new WP_Query( 'page_id='.$page_id_b.'' ); 
 					while ( $query_right->have_posts() ) : $query_right->the_post(); ?>
-					<div class="marketing-wrapper-right right" style="">									
+					<div class="inner-tab-content-right right" style="">									
 							<?php echo the_content(); ?>
 					</div><?php
 					endwhile; 
-					wp_reset_postdata();?>
-					
-				</div><?php
+					wp_reset_postdata();
 		endif;		
 		?>
 		</div>
@@ -1126,8 +1122,7 @@ function get_services_tab_content( $atts, $content = null ){
 		ob_end_clean();
 		return $content;
 }
-add_shortcode( 'get_services_tab_content', 'get_services_tab_content' );
-
+add_shortcode( 'get_tab_content', 'get_tab_content' );
 
 //http://codex.wordpress.org/Template_Tags/get_posts
 function get_latest_post( $atts, $content = NULL){
