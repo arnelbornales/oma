@@ -3424,13 +3424,13 @@ body #gform_1 ul li {
 		margin-top: 20px;
 }
 #supplementary {
-		width: 920px;
+		width: 950px;
 		margin: 0 auto;
-		padding: 1.5em 10px;
+		padding: 1.5em 0;
 }
 .footer-address{
 		font-family: Arial;
- 		width: 260px;
+ 		width: 200px;
  		float: left;
 }
 .footer-logo{
@@ -3453,7 +3453,7 @@ body #gform_1 ul li {
 }
 .address-separator{
 		background: url('images/border-dotted.jpg') bottom repeat-x;
-		width: 220px;
+		width: 200px;
 		height: 2px;
 		margin: 5px 0;
 		
@@ -3466,10 +3466,11 @@ body #gform_1 ul li {
 
 /** START - Footer Menus */
 #footer #first{
-		 width: 25%;
+		 margin:0 40px 0 0;
+		 width: 200px;
 }
 #footer #second{
-		width: 70%;
+		width: 710px;
 }
 
 #second ul:first-child{
@@ -3486,7 +3487,7 @@ body #gform_1 ul li {
 }
 #second aside{
 	float: left;
-	width: 15%;
+	width: 120px;
 	clear: none;
 }
 
@@ -3511,7 +3512,7 @@ body #gform_1 ul li {
   line-height: 25px;
 }
 #second #nav_menu-3{
-	width: 55%;
+	width: 350px;
 }
 #second #nav_menu-2 li{
 	padding-left: 0;
@@ -4285,9 +4286,6 @@ ul#breadcrumbs-services li a,.breadcrumbs-items-last{
 }
 .hide{
 	display: none;
-}
-aside#nav_menu-5{
-	width: 12%;
 }
 .marketing-right-col .cell-two{
 	background: url("images/border-dotted.jpg") bottom repeat-x; 
