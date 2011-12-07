@@ -1137,39 +1137,49 @@ function get_press_room_content( $atts, $content = null ){
 		ob_start(); ?>
 	  <div class="inner-tab-wrapper clear-after clear"><?php
 		if ( $query_left->have_posts() ) :?>
-			  <?php						
+			  <div class="inner-tab-content-left left">  	
+				<?php						
 					while ( $query_left->have_posts() ) : $query_left->the_post(); ?>
-					<div class="inner-tab-content-left left">  	
-				    	<h2 class="inner-tab-title"><a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo get_post_meta(get_the_ID(), 'field_inner_title_quicktab' , true); ?></a></h2>
+					  	<h2 class="inner-tab-title"><a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo get_post_meta(get_the_ID(), 'field_inner_title_quicktab' , true); ?></a></h2>
 							<span class="inner-tab-sub-headline"><?php echo get_post_meta(get_the_ID(), 'field_inner_sub_title_quicktab' , true); ?></span>
 							<?php echo the_content(); ?>
-					</div><?php
+					<?php
 					endwhile; 
-					wp_reset_postdata();
+				wp_reset_postdata(); ?>
+				</div>
+		<?php
 		endif;
 		
 		$args = array(
 			'post_type' => 'agency_news',
 			'post_status' => array('publish'),
+			'showposts' => 4,
 			'order_by' => 'modified',
 		);
 		$query_right = new WP_Query( $args ); 
-		
-		while ( $query_right->have_posts() ) : $query_right->the_post(); ?>
-		<div class="inner-tab-content-right right" style="">
-				<h3><a href="<?php the_permalink(); ?>" class="latest-post-title"><?php the_title(); ?></a><br /></h3>
-				<?php echo get_post_meta(get_the_ID(), 'field_story_date' , true); ?>	
-				<?php echo the_excerpt(); ?>
-				<?php $pdf =  get_post_meta(get_the_ID(), 'field_pdf_upload' , true); ?>
-				<?php	foreach($pdf as $key){ 
-								echo '<a href="'.$key['image'].'">PDF</a>'; 
-							}
-				?>
-		</div><?php
-		endwhile;
-		wp_reset_postdata(); 
-	
 		?>
+				<div class="inner-tab-content-right right" style=""><?php
+					while ( $query_right->have_posts() ) : $query_right->the_post(); ?>
+							<div class="press-room-entry">
+								<h3 class="entry-title"><a href="<?php the_permalink(); ?>" class="latest-post-title"><?php the_title(); ?></a><br /></h3>
+								<span class="entry-meta">
+								<?php $time = get_post_meta(get_the_ID(), 'field_story_date' , true); 
+											$date = date_create($time);
+											echo 'Written on '.date_format($date, 'F y, Y'); 
+								?>
+								</span>
+								<?php echo the_excerpt(); ?>
+								<?php $pdf =  get_post_meta(get_the_ID(), 'field_pdf_upload' , true); ?>
+								<?php	//foreach($pdf as $key){ 
+											//		echo '<a href="'.$key['image'].'">PDF</a>'; 
+											//} ?>
+							</div>
+					<?php
+					endwhile;
+				wp_reset_postdata(); 
+				?>
+				<span class="link-press-release-archive"><a href="">See Press Releases Archive</a></span>
+				</div>
 		</div>
 		<?php
 		$content = ob_get_contents();

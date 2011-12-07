@@ -3097,7 +3097,7 @@ body .gform_wrapper form .gform_body ul li {
 #content-blurb-wrapper{
 		background: #c5cb50 url('images/body-bg-top.jpg') top no-repeat;
 		min-width: 960px;
-		min-height: 60px;
+		overflow-y: auto;
 		margin: 0;
 		padding: 0;
 		border: 0;
@@ -3975,14 +3975,15 @@ body #gform_1 ul li {
   padding: 0;
 }
 
-.blog .entry-title, .blog .entry-title a {
+.blog .entry-title, .blog .entry-title a,.page .entry-title, .page .entry-title a {
   color: #517a96;
   font-family: Helvetica, Arial, Sans-serif;
   font-size: 24px;
+  line-height: 30px;
   font-weight: normal;
 }
 
-.blog .entry-meta {
+.blog .entry-meta,.page .entry-meta {
   color: #bac12f;
   font-size: 12px;
   font-style: italic;
@@ -4295,4 +4296,18 @@ ul#breadcrumbs-services li a,.breadcrumbs-items-last{
 }
 table.marketing-right-col tr {
 	padding: 20px;
+}
+.press-room-entry{
+	background: url("images/border-dotted.jpg") bottom repeat-x; 
+	margin-bottom: 10px;
+}
+.link-press-release-archive{
+	color: #222;
+	font-size: 26px;
+	font-weight: bold;
+	line-height: 1.5em;
+	padding-bottom: .3em;
+	padding-top: 15px;
+	margin-top: 20px;
+	text-decoration: underline;
 }
