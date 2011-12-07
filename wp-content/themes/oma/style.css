@@ -3097,6 +3097,7 @@ body .gform_wrapper form .gform_body ul li {
 #content-blurb-wrapper{
 		background: #c5cb50 url('images/body-bg-top.jpg') top no-repeat;
 		min-width: 960px;
+		min-height: 60px;
 		overflow-y: auto;
 		margin: 0;
 		padding: 0;
