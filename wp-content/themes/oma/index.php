@@ -30,6 +30,7 @@ get_header(); ?>
 						<?php if ( have_posts() ) : ?>
 								<?php //twentyeleven_content_nav( 'nav-above' ); ?>
 								<?php query_posts( 'showposts=5'.'&paged='.$paged ); ?>
+								<?php //query_posts( 'showposts=5' ); ?>
 								<?php /* Start the Loop */ ?>
 								<?php while ( have_posts() ) : the_post(); ?>
 										<?php get_template_part( 'content', 'blog' ); ?>

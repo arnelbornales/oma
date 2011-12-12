@@ -2742,9 +2742,8 @@ body{
 .phone .textwidget{
 		width: 200px;
     color: #C5CB50 !important;
-    font-size: 18px;
     font-style: normal;
-    font-family: "TradeGothic",Arial;
+    font: 18px TradeGothic,Arial;
 }
 #subscribed{
 		height: 26px;
@@ -2822,26 +2821,35 @@ body .gform_wrapper form .gform_body ul li {
 		padding: 15px;
 		z-index: 999;
 }
+
 #gform_wrapper_2 .gform_heading,
 #gform_wrapper_3 .gform_heading{
 		display: none;
 }
-#gform_wrapper_2 input[type=text],#gform_wrapper_2 input[type=email]{
+
+#gform_wrapper_2 input[type=text],
+#gform_wrapper_2 input[type=email]{
 		margin: 10px 0;
 		width: 225px;
 		color: #ccc;
 		font-style: italic;
 		padding-left: 5px;
+		border: 1px solid #ddd;
 }
-#gform_wrapper_3 input[type=text],#gform_wrapper_3 input[type=email],#gform_wrapper_3 input[type=tel],#gform_wrapper_3 textarea{
+#gform_wrapper_3 input[type=text],
+#gform_wrapper_3 input[type=email],
+#gform_wrapper_3 input[type=tel],
+#gform_wrapper_3 textarea{
 		margin: 10px 0;
 		width: 290px;
 		color: #ccc;
 		font-style: italic;
 		padding-left: 5px;
+		border: 1px solid #ddd;
 }
 #gform_wrapper_3 textarea{
 		height: 50px;
+		border: 1px solid #ddd;
 }
 #gform_wrapper_1 input[type=submit],
 #gform_wrapper_2 input[type=submit],
@@ -2861,6 +2869,7 @@ body .gform_wrapper form .gform_body ul li {
 		padding: 10px 20px;
 		background: #fff;
 		border: 1px solid  #c5cb50;
+		z-index: 999;
 		
 		/*margin-top: 4px;*/
 }
@@ -2921,10 +2930,9 @@ body .gform_wrapper form .gform_body ul li {
     color: #656565;
     display: block;
     line-height: 1.9em; 
-    font-size: 18px; 
     padding: 0 0.5em;
     line-height: 1.9em;
-    font-family: "TradeGothic",Arial;   
+    font: 18px TradeGothic,Arial;  
 }
 #menu-main-nav-menu li{
 		background: url("images/main-nav-separator.png") right no-repeat;
@@ -2985,6 +2993,7 @@ body .gform_wrapper form .gform_body ul li {
 #access .current_page_item > a,#access .current_page_ancestor > a {
 		font-weight: inherit;
 		color: #C5CB50;
+		font: 18px TradeGothic,Arial;  
 }
 #access ul ul {
 		-moz-box-shadow: 0 0 0;
@@ -2999,7 +3008,7 @@ body .gform_wrapper form .gform_body ul li {
 		padding-left: 1em;
 		width: 300px;
 		background: #fff;
-		z-index: 99999;
+		z-index: 9;
 		
 		
 }
@@ -3127,7 +3136,7 @@ body .gform_wrapper form .gform_body ul li {
 		-moz-box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
 		-webkit-box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
 		box-shadow: 0 -5px 5px rgba(0,0,0,0.5);
-		min-height: 900px;
+		overflow-y: auto;
 		margin-bottom: 20px;
 }
 #related-services-right .page-title{
@@ -3488,8 +3497,11 @@ body #gform_1 ul li {
 }
 #second aside{
 	float: left;
-	width: 120px;
+	width: 110px;
 	clear: none;
+}
+#second #nav_menu-4{
+	width: 140px;
 }
 
 #second ul li{
@@ -3978,10 +3990,9 @@ body #gform_1 ul li {
 
 .blog .entry-title, .blog .entry-title a,.page .entry-title, .page .entry-title a {
   color: #517a96;
-  font-family: Helvetica, Arial, Sans-serif;
-  font-size: 24px;
-  line-height: 30px;
   font-weight: normal;
+  font: 24px TradeGothic;
+  line-height: 24px;
 }
 
 .blog .entry-meta,.page .entry-meta {
@@ -4104,12 +4115,12 @@ body #gform_1 ul li {
 }
 
 h2.inner-tab-title{
-	font-size: 24px;
-	font-family: 'TradeGothic';
+	font: 24px TradeGothic,Arial;  
 	line-height: 24px;
 }
 h2.inner-tab-title a{
 	color: #517a96;
+	font: 18px TradeGothic,Arial;  
 } 
 #process-tab{
 	min-height: 400px;
@@ -4176,7 +4187,7 @@ p,td.cell-two p {
 }
 .marketing-right-col td.cell-two a{
 		color: #517a96;
-		font-weight: bold;
+		font-weight: normal;
 }
 .services-right-titles{
 	color: #517a96;
@@ -4303,12 +4314,23 @@ table.marketing-right-col tr {
 	margin-bottom: 10px;
 }
 .link-press-release-archive{
-	color: #222;
-	font-size: 26px;
 	font-weight: bold;
 	line-height: 1.5em;
 	padding-bottom: .3em;
-	padding-top: 15px;
+	padding: 5px 0 0 10px;
 	margin-top: 20px;
-	text-decoration: underline;
+	background: url('images/category-icon.jpg') left no-repeat;
+	font: 24px TradeGothic;
+	display: block;
+}
+.link-press-release-archive a{
+	color: #517A96;
+}
+.press-room-archive-left{
+	width: 15%;
+	font: 26px TradeGothic;
+	color: #BAC12F;
+}
+.press-room-archive-right{
+	width: 85%;
 }

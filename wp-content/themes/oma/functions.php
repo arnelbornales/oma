@@ -1139,7 +1139,7 @@ function get_press_room_content( $atts, $content = null ){
 		if ( $query_left->have_posts() ) :?>
 			  <div class="inner-tab-content-left left">  	
 				<?php						
-					while ( $query_left->have_posts() ) : $query_left->the_post(); ?>
+				  while ( $query_left->have_posts() ) : $query_left->the_post(); ?>
 					  	<h2 class="inner-tab-title"><a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo get_post_meta(get_the_ID(), 'field_inner_title_quicktab' , true); ?></a></h2>
 							<span class="inner-tab-sub-headline"><?php echo get_post_meta(get_the_ID(), 'field_inner_sub_title_quicktab' , true); ?></span>
 							<?php echo the_content(); ?>
@@ -1178,7 +1178,7 @@ function get_press_room_content( $atts, $content = null ){
 					endwhile;
 				wp_reset_postdata(); 
 				?>
-				<span class="link-press-release-archive"><a href="">See Press Releases Archive</a></span>
+				<span class="link-press-release-archive"><a href="agency-news-archive">See Press Releases Archive</a></span>
 				</div>
 		</div>
 		<?php
@@ -1187,6 +1187,66 @@ function get_press_room_content( $atts, $content = null ){
 		return $content;
 }
 add_shortcode( 'get_press_room_content', 'get_press_room_content' );
+
+
+function get_jobs_content( $atts, $content = null ){
+		extract( shortcode_atts( array(
+			'page_id' => 'page_id',
+		), $atts ) );
+		$args = array('post_type' => 'page',
+					  'post_status' => array('publish'),
+					  'page_id' => $page_id,
+				);
+		$query_left = new WP_Query( $args );
+		ob_start(); ?>
+	  <div class="inner-tab-wrapper clear-after clear"><?php
+		if ( $query_left->have_posts() ) :?>
+			  <div class="inner-tab-content-left left">  	
+				<?php						
+					while ( $query_left->have_posts() ) : $query_left->the_post(); ?>
+					  	<h2 class="inner-tab-title"><a href="<?php echo the_permalink(); ?>" class="inner-tab-title"><?php echo get_post_meta(get_the_ID(), 'field_inner_title_quicktab' , true); ?></a></h2>
+							<span class="inner-tab-sub-headline"><?php echo get_post_meta(get_the_ID(), 'field_inner_sub_title_quicktab' , true); ?></span>
+							<?php echo the_content(); ?>
+					<?php
+					endwhile; 
+				wp_reset_postdata(); ?>
+				</div>
+		<?php
+		endif;
+		
+		$args = array(
+			'post_type' => 'jobs',
+			'post_status' => array('publish'),
+			'showposts' => 4,
+			'order_by' => 'modified',
+		);
+		$query_right = new WP_Query( $args ); 
+		?>
+				<div class="inner-tab-content-right right" style=""><?php
+					while ( $query_right->have_posts() ) : $query_right->the_post(); ?>
+							<div class="press-room-entry">
+								<h3 class="entry-title"><a href="<?php the_permalink(); ?>" class="latest-post-title"><?php the_title(); ?></a><br /></h3>
+								<span class="entry-meta">
+								<?php $time = get_post_meta(get_the_ID(), 'field_jobs_until' , true); 
+											$date = date_create($time);
+											echo 'Jobs expires on '.date_format($date, 'F y, Y'); 
+								?>
+								</span>
+								<?php echo the_excerpt(); ?>
+								<?php $pdf =  get_post_meta(get_the_ID(), 'field_pdf_upload' , true); ?>
+							</div>
+					<?php
+					endwhile;
+				wp_reset_postdata(); 
+				?>
+				</div>
+		</div>
+		<?php
+		$content = ob_get_contents();
+		ob_end_clean();
+		return $content;
+}
+add_shortcode( 'get_jobs_content', 'get_jobs_content' );
 
 
 //http://codex.wordpress.org/Template_Tags/get_posts
@@ -1389,7 +1449,8 @@ function browser_body_class($classes = '') {
 
 
 
-function blog_pagination($pages = '', $range = 14) {   /* handle pagination for post pages*/
+function blog_pagination($pages = '', $range = 14 ) {   /* handle pagination for post pages*/
+    
     $showitems = ($range * 2)+1;  
      
     global $paged;
@@ -1412,14 +1473,16 @@ function blog_pagination($pages = '', $range = 14) {   /* handle pagination for 
  				if ($paged < $pages && $showitems < $pages) echo "<a href=\"".get_pagenum_link($paged + 1)."\">&laquo; NEWER</a>";
         
         
-        for ($i=1; $i <= $pages; $i++){
+        for ($i=$paged; $i <= $pages; $i++){
         	if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems )){
                  echo ($paged == $i)? "<span class=\"current\">".$i."</span>":"<a href='".get_pagenum_link($i)."' class=\"inactive\">".$i."</a>";
           }
         }
- 
+ 				
         if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) echo "<a href='".get_pagenum_link($paged - 1)."'>OLDER &raquo;</a>";
         echo "</div>\n";
     }
+    
+    
 }
 ?>
