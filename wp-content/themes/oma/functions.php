@@ -737,7 +737,7 @@ function oma_page_excerpts(){
 add_action('init', 'oma_page_excerpts');
 
 function oma_page_quicktabs() { ?>
-<script type="text/javascript" src="http://jqueryui.com/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="http://jquerysheet.googlecode.com/svn-history/r408/trunk/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="http://jqueryui.com/ui/jquery.ui.core.js"></script>
 <script type="text/javascript" src="http://jqueryui.com/ui/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="http://jqueryui.com/ui/jquery.ui.tabs.js"></script>
